@@ -3,34 +3,30 @@ import { company, nav } from '../content.js'
 import { openConsentSettings } from '../lib/consent.js'
 import Logo from './Logo.jsx'
 
-const link = 'text-stone hover:text-paper underline-offset-4 hover:underline focus-ring'
+const link = 'hover:text-sand underline-offset-4 hover:underline focus-ring'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-ink">
-      <div className="container-x grid gap-12 py-16 md:grid-cols-12 md:py-20">
+    <footer className="bg-kohle">
+      <div className="wrap grid gap-12 border-t border-kalk/15 py-16 text-base md:grid-cols-12">
         <div className="md:col-span-5">
-          <Logo />
-          <address className="mt-6 not-italic leading-relaxed text-stone">
-            {company.name}
+          <Logo className="text-4xl" />
+          <address className="mt-6 not-italic text-staub">
+            {company.name}, {company.street}, {company.zip} {company.city}
             <br />
-            {company.street}
-            <br />
-            {company.zip} {company.city}
-          </address>
-          <p className="mt-4 space-x-4 text-stone">
             <a href={`tel:${company.phoneOfficeHref}`} className={link}>
               {company.phoneOffice}
-            </a>
+            </a>{' '}
+            oder{' '}
             <a href={`mailto:${company.email}`} className={link}>
               {company.email}
             </a>
-          </p>
+          </address>
         </div>
 
-        <nav aria-label="Fussnavigation" className="md:col-span-3">
-          <h2 className="eyebrow">Seiten</h2>
-          <ul className="mt-5 space-y-3">
+        <nav aria-label="Fussnavigation" className="md:col-span-3 md:col-start-7">
+          <h2 className="text-staub">Seite</h2>
+          <ul className="mt-4 space-y-2">
             {nav.map((item) => (
               <li key={item.id}>
                 <Link to={{ pathname: '/', hash: item.id }} className={link}>
@@ -41,9 +37,9 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <nav aria-label="Rechtliches" className="md:col-span-4">
-          <h2 className="eyebrow">Rechtliches</h2>
-          <ul className="mt-5 space-y-3">
+        <nav aria-label="Rechtliches" className="md:col-span-3">
+          <h2 className="text-staub">Rechtliches</h2>
+          <ul className="mt-4 space-y-2">
             <li>
               <Link to="/impressum" className={link}>
                 Impressum
@@ -55,19 +51,17 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <button type="button" onClick={openConsentSettings} className={link}>
+              <button type="button" onClick={openConsentSettings} className={`text-left ${link}`}>
                 Cookie-Einstellungen
               </button>
             </li>
-            <li className="text-ash">AGB auf Anfrage per E-Mail</li>
+            <li className="text-staub">AGB auf Anfrage per E-Mail</li>
           </ul>
         </nav>
-      </div>
-      <div className="border-t border-line">
-        <div className="container-x flex flex-col gap-2 py-6 text-sm text-ash sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} {company.name}</p>
-          <p>UID {company.uid}</p>
-        </div>
+
+        <p className="text-sm text-staub md:col-span-12">
+          © {new Date().getFullYear()} {company.name}. UID {company.uid}. Alle Fotos zeigen eigene Arbeiten.
+        </p>
       </div>
     </footer>
   )

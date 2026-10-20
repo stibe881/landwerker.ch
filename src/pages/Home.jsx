@@ -1,17 +1,17 @@
 import Hero from '../sections/Hero.jsx'
-import Expertise from '../sections/Expertise.jsx'
-import Credo from '../sections/Credo.jsx'
-import Showcase from '../sections/Showcase.jsx'
-import Contact from '../sections/Contact.jsx'
+import Leistungen from '../sections/Leistungen.jsx'
+import Werkstatt from '../sections/Werkstatt.jsx'
+import Werkliste from '../sections/Werkliste.jsx'
+import Kontakt from '../sections/Kontakt.jsx'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Expertise />
-      <Credo />
-      <Showcase />
-      <Contact />
+      <Leistungen />
+      <Werkstatt />
+      <Werkliste />
+      <Kontakt />
     </>
   )
 }

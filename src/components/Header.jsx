@@ -1,56 +1,55 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { nav } from '../content.js'
 import Logo from './Logo.jsx'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => setScrolled(window.scrollY > 60)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => setMenuOpen(false), [location])
+  useEffect(() => setOpen(false), [location])
 
   useEffect(() => {
-    if (!menuOpen) return
-    const onKey = (e) => e.key === 'Escape' && setMenuOpen(false)
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [menuOpen])
+  }, [open])
 
-  const solid = scrolled || menuOpen || location.pathname !== '/'
-  const link = 'text-sm text-paper/90 hover:text-sand transition-colors focus-ring'
+  const solid = scrolled || open || location.pathname !== '/'
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top,0px)] transition-colors duration-300 ${
-        solid ? 'border-b border-line bg-ink/95 backdrop-blur' : 'bg-gradient-to-b from-black/50 to-transparent'
+        solid ? 'bg-kohle' : 'bg-transparent'
       }`}
     >
-      <div className="container-x flex h-18 items-center justify-between">
+      <div className="wrap flex h-18 items-center justify-between gap-8">
         <Link to="/" className="focus-ring" aria-label="Landwerker GmbH, zur Startseite">
           <Logo />
         </Link>
 
         <nav aria-label="Hauptnavigation" className="hidden md:block">
-          <ul className="flex items-center gap-9">
+          <ul className="flex items-center gap-8 font-display text-lg font-medium uppercase tracking-[0.03em]">
             {nav.map((item) => (
               <li key={item.id}>
-                <NavLink to={{ pathname: '/', hash: item.id }} className={link}>
+                <Link to={{ pathname: '/', hash: item.id }} className="hover:text-sand focus-ring">
                   {item.label}
-                </NavLink>
+                </Link>
               </li>
             ))}
             <li>
               <Link
                 to={{ pathname: '/', hash: 'kontakt' }}
-                className="inline-flex min-h-11 items-center border border-paper/70 px-5 text-sm hover:border-sand hover:bg-sand hover:text-ink transition-colors focus-ring"
+                className="inline-flex min-h-11 items-center bg-sand px-5 text-kohle hover:bg-kalk focus-ring"
               >
                 Projekt anfragen
               </Link>
@@ -60,23 +59,23 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center text-sm md:hidden focus-ring"
-          aria-expanded={menuOpen}
+          className="min-h-11 min-w-11 font-display text-lg font-medium uppercase md:hidden focus-ring"
+          aria-expanded={open}
           aria-controls="mobile-nav"
-          onClick={() => setMenuOpen((v) => !v)}
+          onClick={() => setOpen((v) => !v)}
         >
-          {menuOpen ? 'Schliessen' : 'Menü'}
+          {open ? 'Schliessen' : 'Menü'}
         </button>
       </div>
 
-      {menuOpen && (
-        <nav id="mobile-nav" aria-label="Hauptnavigation mobil" className="border-t border-line md:hidden">
-          <ul className="container-x flex flex-col py-4">
-            {nav.map((item) => (
-              <li key={item.id}>
+      {open && (
+        <nav id="mobile-nav" aria-label="Hauptnavigation mobil" className="md:hidden">
+          <ul className="wrap flex flex-col pb-8 pt-2">
+            {[...nav, { id: 'kontakt', label: 'Projekt anfragen' }].map((item, i) => (
+              <li key={item.label} className="border-t border-kalk/15">
                 <Link
                   to={{ pathname: '/', hash: item.id }}
-                  className="block py-3 font-serif text-2xl hover:text-sand focus-ring"
+                  className={`head block py-4 text-4xl focus-ring ${i === nav.length ? 'text-sand' : ''}`}
                 >
                   {item.label}
                 </Link>

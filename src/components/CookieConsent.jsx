@@ -36,8 +36,7 @@ export default function CookieConsent() {
     setDetails(false)
   }
 
-  const btn =
-    'min-h-11 px-5 text-sm font-medium transition-colors focus-ring'
+  const btn = 'min-h-11 px-4 font-display text-lg font-semibold uppercase tracking-[0.02em] focus-ring-dark'
 
   return (
     <section
@@ -45,38 +44,30 @@ export default function CookieConsent() {
       tabIndex={-1}
       role="region"
       aria-labelledby={titleId}
-      className="fixed inset-x-3 bottom-3 z-50 mx-auto max-h-[85svh] max-w-2xl overflow-y-auto border border-line bg-coal p-5 text-paper shadow-2xl shadow-black/60 outline-none sm:inset-x-6 sm:bottom-6 sm:p-7"
+      className="fixed bottom-3 left-3 right-3 z-50 max-h-[85svh] max-w-md overflow-y-auto bg-sand p-6 text-kohle outline-none sm:bottom-6 sm:left-6 sm:right-auto"
     >
-      <h2 id={titleId} className="font-serif text-xl">
-        Ihre Daten, Ihr Entscheid.
+      <h2 id={titleId} className="head text-3xl">
+        Cookies? Nur mit Ihrem Ja.
       </h2>
-      <p className="mt-3 text-sm leading-relaxed text-stone">
-        Diese Website braucht nur technisch notwendige Speicherung. Statistik setzen wir erst ein, wenn Sie zustimmen. Sie
-        können Ihre Wahl jederzeit im Fuss der Seite ändern. Mehr dazu in der{' '}
-        <Link to="/datenschutz" className="text-paper underline underline-offset-4 hover:text-sand focus-ring">
+      <p className="mt-3 text-base leading-snug">
+        Ohne Zustimmung speichern wir nur Ihren Entscheid. Statistik läuft erst, wenn Sie zustimmen. Ändern können Sie das
+        jederzeit unten auf der Seite.{' '}
+        <Link to="/datenschutz" className="underline underline-offset-4 focus-ring-dark">
           Datenschutzerklärung
         </Link>
-        .
       </p>
 
       {details && (
-        <fieldset className="mt-5 space-y-4 border-t border-line pt-5">
+        <fieldset className="mt-5 space-y-4 border-t border-kohle/25 pt-5 text-base">
           <legend className="sr-only">Kategorien</legend>
           <div className="flex items-start gap-3">
-            <input
-              id="consent-necessary"
-              type="checkbox"
-              checked
-              disabled
-              className="mt-1 h-5 w-5 accent-sand"
-              aria-describedby="consent-necessary-desc"
-            />
+            <input id="consent-necessary" type="checkbox" checked disabled className="mt-1 h-5 w-5 accent-kohle" aria-describedby="consent-necessary-desc" />
             <div>
-              <label htmlFor="consent-necessary" className="text-sm font-medium">
-                Notwendig <span className="text-ash">(immer aktiv)</span>
+              <label htmlFor="consent-necessary" className="font-semibold">
+                Notwendig (immer aktiv)
               </label>
-              <p id="consent-necessary-desc" className="text-sm text-stone">
-                Speichert Ihren Entscheid zu dieser Abfrage. Keine Weitergabe an Dritte.
+              <p id="consent-necessary-desc" className="text-lehm">
+                Speichert Ihren Entscheid zu dieser Abfrage. Bleibt auf Ihrem Gerät.
               </p>
             </div>
           </div>
@@ -86,40 +77,36 @@ export default function CookieConsent() {
               type="checkbox"
               checked={statistics}
               onChange={(e) => setStatistics(e.target.checked)}
-              className="mt-1 h-5 w-5 accent-sand focus-ring"
+              className="mt-1 h-5 w-5 accent-kohle focus-ring-dark"
               aria-describedby="consent-statistics-desc"
             />
             <div>
-              <label htmlFor="consent-statistics" className="text-sm font-medium">
+              <label htmlFor="consent-statistics" className="font-semibold">
                 Statistik
               </label>
-              <p id="consent-statistics-desc" className="text-sm text-stone">
-                Anonyme Auswertung der Seitenaufrufe, damit wir sehen, was gelesen wird.
+              <p id="consent-statistics-desc" className="text-lehm">
+                Anonyme Zählung der Seitenaufrufe.
               </p>
             </div>
           </div>
         </fieldset>
       )}
 
-      <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-        {/* Ablehnen und Zustimmen sind gleichwertig gestaltet (kein Nudging) */}
-        <button type="button" onClick={() => decide(false)} className={`${btn} border border-paper hover:bg-paper hover:text-ink`}>
-          Nur notwendige
+      {/* Ablehnen und Zustimmen sind gleich gross und gleich gestaltet */}
+      <div className="mt-6 grid grid-cols-2 gap-2">
+        <button type="button" onClick={() => decide(false)} className={`${btn} bg-kohle text-kalk hover:bg-lehm`}>
+          Ablehnen
         </button>
-        <button type="button" onClick={() => decide(true)} className={`${btn} border border-paper hover:bg-paper hover:text-ink`}>
-          Alle akzeptieren
+        <button type="button" onClick={() => decide(true)} className={`${btn} bg-kohle text-kalk hover:bg-lehm`}>
+          Zustimmen
         </button>
         {details ? (
-          <button type="button" onClick={() => decide(statistics)} className={`${btn} col-span-2 bg-sand text-ink hover:bg-paper sm:ml-auto`}>
+          <button type="button" onClick={() => decide(statistics)} className={`${btn} col-span-2 border-2 border-kohle hover:bg-kohle hover:text-kalk`}>
             Auswahl speichern
           </button>
         ) : (
-          <button
-            type="button"
-            onClick={() => setDetails(true)}
-            className={`${btn} col-span-2 text-stone underline underline-offset-4 hover:text-paper sm:ml-auto`}
-          >
-            Einstellungen
+          <button type="button" onClick={() => setDetails(true)} className="col-span-2 min-h-11 text-left text-base underline underline-offset-4 focus-ring-dark">
+            Einzeln auswählen
           </button>
         )}
       </div>

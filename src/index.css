@@ -1,24 +1,24 @@
 @import "tailwindcss";
-@import "@fontsource-variable/fraunces";
-@import "@fontsource-variable/fraunces/wght-italic.css";
-@import "@fontsource-variable/inter-tight";
+@import "@fontsource-variable/big-shoulders-display";
+@import "@fontsource-variable/big-shoulders-stencil-display";
+@import "@fontsource-variable/newsreader";
+@import "@fontsource-variable/newsreader/wght-italic.css";
 
-/* Schriften werden lokal ausgeliefert (kein Google-Fonts-Abruf, revDSG/DSGVO). */
+/* Google Fonts, lokal über Fontsource eingebunden: kein Abruf bei Google (revDSG/DSGVO). */
 
 @theme {
-  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-stamp: "Big Shoulders Stencil Display Variable", "Big Shoulders Display Variable", Impact, sans-serif;
+  --font-display: "Big Shoulders Display Variable", "Arial Narrow", sans-serif;
+  --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
 
-  /* Kontraste auf #121212: paper 17.2:1, stone 8.4:1, sand 8.8:1, ash 6.1:1 */
-  --color-ink: #121212;
-  --color-coal: #1a1918;
-  --color-clay: #221e1a;
-  --color-line: #2f2b27;
-  --color-paper: #f7f5f0;
-  --color-stone: #b5ada2;
-  --color-ash: #9a9288;
-  --color-sand: #c9ae85;
-  --color-sand-deep: #8c7355;
+  /* Kontrast: kalk/kohle 18.7, staub/kohle 6.8, staub/rinde 5.6, kohle/sand 8.0, lehm/sand 5.4 */
+  --color-kohle: #121212;
+  --color-rinde: #2a231d;
+  --color-sand: #c4a57a;
+  --color-kalk: #ffffff;
+  --color-staub: #a39b90;
+  --color-lehm: #3b3128;
+  --color-fehler: #f2a88e;
 }
 
 @layer base {
@@ -29,34 +29,41 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-ink text-paper font-sans antialiased;
-    font-feature-settings: "ss01", "cv11";
+    @apply bg-kohle font-serif text-kalk antialiased;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    font-optical-sizing: auto;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
   }
   ::selection {
-    @apply bg-sand text-ink;
+    @apply bg-sand text-kohle;
   }
-  /* Sichtbarer Fokus für Tastaturnutzung, überall */
   :focus-visible {
     outline: 2px solid var(--color-sand);
     outline-offset: 3px;
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
   }
 }
 
-@utility eyebrow {
-  @apply text-xs font-medium uppercase tracking-[0.22em] text-sand;
+@utility wrap {
+  @apply mx-auto w-full max-w-[96rem] px-5 sm:px-8 lg:px-12;
 }
 
-@utility container-x {
-  @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-14;
-}
-
+/* Sichtbarer Fokusring für Tastaturbedienung */
 @utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2 focus-visible:ring-offset-kohle;
+}
+
+/* Überschriften: schmale Grotesk, gesetzt wie Beschriftung auf der Baustelle */
+@utility head {
+  @apply font-display font-semibold uppercase leading-[0.92] tracking-[0.01em];
+}
+
+/* Fokusring auf Sand-Flächen */
+@utility focus-ring-dark {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kohle focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
 }

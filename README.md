@@ -1,7 +1,8 @@
 # landwerker.ch
 
 Website der Landwerker GmbH, Menznau. Holzbau und PV-Anlagen.
-React 19, Vite, Tailwind CSS 4, kleiner Node-Server für das Kontaktformular.
+React 19, Vite, Tailwind CSS 4, GSAP, kleiner Node-Server für das Kontaktformular.
+Design-Regeln und Designsystem: `CLAUDE.md`. Visuelle Referenzen: `docs/referenzen.md`.
 
 ## Entwicklung
 
@@ -36,7 +37,8 @@ Neue Referenzbilder als WebP nach `public/media/work/` legen und in `projects` e
   Markierte Platzhalter (Hosting, MWST-Nummer, E-Mail-Anbieter) vor dem Livegang ergänzen
   und die Texte juristisch prüfen lassen.
 - Kontaktformular verlangt die Datenschutz-Einwilligung im Frontend und im Server.
-- Schriften, Bilder und Video werden selbst gehostet. Keine Google Fonts, kein YouTube.
+- Schriften (Google Fonts: Big Shoulders, Newsreader) werden über Fontsource selbst gehostet,
+  ebenso Bilder und Video. Kein Abruf bei Google, kein YouTube.
 - Semantische Landmarks, Skip-Link, sichtbare Fokus-Ringe, Kontraste ≥ 5.4:1,
   Hintergrundvideo pausierbar und bei `prefers-reduced-motion` angehalten.
 

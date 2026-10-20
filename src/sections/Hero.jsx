@@ -1,32 +1,46 @@
-import { useEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap'
 
 const media = (f) => `${import.meta.env.BASE_URL}media/${f}`
 
+const LINES = ['Sie haben', 'das Projekt.', 'Wir bauen es.']
+
 export default function Hero() {
+  const root = useRef(null)
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(true)
 
-  // Bewegung reduzieren, wenn das Betriebssystem es wünscht (WCAG 2.3.3)
-  useEffect(() => {
+  // Die eine orchestrierte Szene der Seite: Zeilen werden wie ein Stempel aufgedrückt.
+  useLayoutEffect(() => {
+    const mm = gsap.matchMedia()
+    const ctx = gsap.context(() => {
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap
+          .timeline({ defaults: { ease: 'power4.out' } })
+          .from('[data-line]', { yPercent: 105, duration: 1.1, stagger: 0.12 })
+          .from('[data-rule]', { scaleX: 0, transformOrigin: 'left center', duration: 0.9 }, '-=0.6')
+          .from('[data-after]', { opacity: 0, duration: 0.6 }, '-=0.4')
+      })
+    }, root)
+
+    // Video: Zeitlupe, bei reduzierter Bewegung angehalten (WCAG 2.3.3)
+    const v = videoRef.current
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const sync = () => {
-      const v = videoRef.current
-      if (!v) return
+    if (v) {
+      v.playbackRate = 0.5
       if (mq.matches) {
         v.pause()
         setPlaying(false)
-      } else {
-        v.playbackRate = 0.5 // Zeitlupe
-        v.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
       }
     }
-    sync()
-    mq.addEventListener('change', sync)
-    return () => mq.removeEventListener('change', sync)
+    return () => {
+      ctx.revert()
+      mm.revert()
+    }
   }, [])
 
-  // Pausieren muss möglich sein, da das Video länger als 5 s läuft (WCAG 2.2.2)
+  // Pausieren muss möglich sein, das Video läuft länger als 5 s (WCAG 2.2.2)
   const toggle = () => {
     const v = videoRef.current
     if (!v) return
@@ -40,7 +54,7 @@ export default function Hero() {
   }
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
+    <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden">
       <video
         ref={videoRef}
         className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -56,47 +70,47 @@ export default function Hero() {
         <source src={media('hero.webm')} type="video/webm" />
         <source src={media('hero.mp4')} type="video/mp4" />
       </video>
-      {/* Abdunkelung: garantiert Kontrast für weisse Schrift über allen Videobildern */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/60" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/30 to-ink/40" />
+      {/* Gleichmässige Abdunkelung, damit weisse Schrift auf jedem Videobild mindestens 4.5:1 erreicht */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-kohle/65" />
 
-      <div className="container-x pb-20 pt-40 md:pb-28">
-        <p className="eyebrow">Holzbau und Photovoltaik · Menznau LU</p>
-        <h1
-          id="hero-title"
-          className="mt-6 max-w-5xl font-serif text-[clamp(2.75rem,7.2vw,7.5rem)] font-light leading-[0.95] tracking-[-0.02em]"
-        >
-          Holz, das hält.
-          <br />
-          <span className="italic text-sand">Strom</span> vom eigenen Dach.
-        </h1>
-        <div className="mt-10 flex flex-col gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-md text-lg leading-relaxed text-paper/90">
-            Terrassen, Umbauten, Sanierungen und PV-Anlagen. Geplant und gebaut von vier Leuten aus Menznau.
-          </p>
-          <Link
-            to={{ pathname: '/', hash: 'kontakt' }}
-            className="group inline-flex min-h-14 items-center gap-4 self-start bg-paper px-8 text-base font-medium text-ink transition-colors hover:bg-sand focus-ring md:self-auto"
-          >
-            Projekt anfragen
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              →
+      <div className="wrap pb-10 pt-32 lg:pb-14">
+        <h1 id="hero-title" className="font-stamp text-[clamp(4rem,13.5vw,15rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.005em]">
+          {LINES.map((line) => (
+            <span key={line} className="block overflow-hidden pb-[0.04em]">
+              <span data-line className="block">
+                {line}
+              </span>
             </span>
-          </Link>
+          ))}
+        </h1>
+
+        <div data-rule className="mt-8 h-px bg-kalk/40 lg:mt-12" />
+
+        <div data-after className="mt-6 grid gap-6 lg:grid-cols-12 lg:items-start">
+          <p className="max-w-[30rem] text-xl leading-snug lg:col-span-5">
+            Terrassen, Umbauten, Sanierungen und PV-Anlagen. Gebaut von vier Leuten aus Menznau.
+          </p>
+          <div className="flex items-center gap-6 lg:col-span-4 lg:col-start-9 lg:justify-end">
+            <Link
+              to={{ pathname: '/', hash: 'kontakt' }}
+              className="inline-flex min-h-14 items-center bg-sand px-8 font-display text-2xl font-semibold uppercase text-kohle hover:bg-kalk focus-ring"
+            >
+              Projekt anfragen
+            </Link>
+            <button
+              type="button"
+              onClick={toggle}
+              className="inline-flex min-h-11 items-center gap-2 font-display text-lg font-medium uppercase text-kalk/90 hover:text-kalk focus-ring"
+              aria-label={playing ? 'Hintergrundvideo anhalten' : 'Hintergrundvideo abspielen'}
+            >
+              <svg aria-hidden="true" viewBox="0 0 12 12" className="h-3 w-3 fill-current">
+                {playing ? <path d="M2 1h3v10H2zM7 1h3v10H7z" /> : <path d="M2 1l9 5-9 5z" />}
+              </svg>
+              {playing ? 'Pause' : 'Play'}
+            </button>
+          </div>
         </div>
       </div>
-
-      <button
-        type="button"
-        onClick={toggle}
-        className="absolute bottom-5 right-5 inline-flex min-h-11 items-center gap-2 px-3 text-xs uppercase tracking-[0.18em] text-paper/80 hover:text-paper focus-ring md:bottom-8 md:right-8"
-        aria-label={playing ? 'Hintergrundvideo anhalten' : 'Hintergrundvideo abspielen'}
-      >
-        <svg aria-hidden="true" viewBox="0 0 12 12" className="h-3 w-3 fill-current">
-          {playing ? <path d="M2 1h3v10H2zM7 1h3v10H7z" /> : <path d="M2 1l9 5-9 5z" />}
-        </svg>
-        {playing ? 'Pause' : 'Play'}
-      </button>
     </section>
   )
 }

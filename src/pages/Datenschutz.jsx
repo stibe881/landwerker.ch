@@ -40,7 +40,7 @@ export default function Datenschutz() {
           Hosting-Anbieter: <Placeholder>Name, Sitz, Land des Hosting-Anbieters</Placeholder>
         </p>
         <p>
-          Schriften, Bilder und Videos liefern wir vom eigenen Server aus. Es werden keine Inhalte von Google Fonts, YouTube
+          Schriften (Google Fonts, lokal eingebunden), Bilder, Videos und Skripte liefern wir vom eigenen Server aus. Es werden keine Inhalte von Servern von Google, YouTube
           oder ähnlichen Diensten nachgeladen.
         </p>
       </Section>
@@ -72,7 +72,7 @@ export default function Datenschutz() {
           Auswertung statt.
         </p>
         <p>
-          <button type="button" onClick={openConsentSettings} className="text-paper underline underline-offset-4 hover:text-sand focus-ring">
+          <button type="button" onClick={openConsentSettings} className="underline underline-offset-4 hover:text-sand focus-ring">
             Cookie-Einstellungen jetzt ändern
           </button>
         </p>

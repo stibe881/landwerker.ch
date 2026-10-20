@@ -33,7 +33,7 @@ export default function App() {
           e.preventDefault()
           document.getElementById('main')?.focus()
         }}
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:px-4 focus:py-3 focus:text-ink focus-ring"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-kalk focus:px-4 focus:py-3 focus:text-kohle focus-ring"
       >
         Zum Inhalt springen
       </a>
