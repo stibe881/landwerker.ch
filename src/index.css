@@ -21,17 +21,29 @@
   --color-fehler: #f2a88e;
 }
 
+/* Grundfarben und Schrift bewusst ausserhalb der Cascade-Layer: Ungeschichtete Regeln einer
+   einbettenden Umgebung (z. B. body { background:#fff; color:#000 }) würden sonst gewinnen
+   und weisse Schrift auf weissem Grund erzeugen. */
+:root {
+  color-scheme: dark;
+  scroll-padding-top: 5rem;
+}
+html body {
+  margin: 0;
+  background: var(--color-kohle);
+  color: var(--color-kalk);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
 @layer base {
   html {
-    color-scheme: dark;
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-kohle font-serif text-kalk antialiased;
-    font-size: 1.125rem;
-    line-height: 1.6;
+    @apply antialiased;
     font-optical-sizing: auto;
   }
   h1, h2, h3 {

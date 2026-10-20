@@ -58,7 +58,7 @@ export default function Werkliste() {
   }
 
   return (
-    <section id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="outline-none">
+    <section id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="bg-kohle outline-none">
       <div className="wrap pb-28 pt-28 lg:pb-40 lg:pt-40">
         <div className="grid gap-8 lg:grid-cols-12">
           <h2 id="werkliste-title" className="head text-[clamp(4rem,10vw,10rem)] lg:col-span-7">

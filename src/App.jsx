@@ -39,7 +39,7 @@ export default function App() {
       </a>
       <ScrollManager />
       <Header />
-      <main id="main" tabIndex={-1} className="outline-none">
+      <main id="main" tabIndex={-1} className="bg-kohle outline-none">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/impressum" element={<Impressum />} />
