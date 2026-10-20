@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/fraunces/wght-italic.css";
+@import "@fontsource-variable/inter-tight";
+
+/* Schriften werden lokal ausgeliefert (kein Google-Fonts-Abruf, revDSG/DSGVO). */
+
+@theme {
+  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+
+  /* Kontraste auf #121212: paper 17.2:1, stone 8.4:1, sand 8.8:1, ash 6.1:1 */
+  --color-ink: #121212;
+  --color-coal: #1a1918;
+  --color-clay: #221e1a;
+  --color-line: #2f2b27;
+  --color-paper: #f7f5f0;
+  --color-stone: #b5ada2;
+  --color-ash: #9a9288;
+  --color-sand: #c9ae85;
+  --color-sand-deep: #8c7355;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ink text-paper font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    @apply bg-sand text-ink;
+  }
+  /* Sichtbarer Fokus für Tastaturnutzung, überall */
+  :focus-visible {
+    outline: 2px solid var(--color-sand);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility eyebrow {
+  @apply text-xs font-medium uppercase tracking-[0.22em] text-sand;
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-14;
+}
+
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+}
