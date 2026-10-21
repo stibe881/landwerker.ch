@@ -36,8 +36,8 @@ Farben aus dem Kundendesign (Logo-Rot und Farben der bisherigen landwerker.ch). 
 | `creme` | `#F6F2E4` | zweite helle Fläche (Über uns, Fusszeile mit Logo, Hover in der Werkliste) |
 | `tinte` | `#322B11` | Schrift auf hellem Grund; als Fläche nur für die Hero-Abdunkelung (65 %). Nie mit dem Logo kombinieren (1.9:1) |
 | `grau` | `#6B6243` | Nebentext auf Papier und Creme |
-| `rot` | `#943838` | Markenrot, gedämpft: gleicher Farbton wie das Logo (#900000), weniger Sättigung. Ganze Flächen (PV, Kontakt, Buttons) mit weisser Schrift, Fokusring. Das Logo selbst bleibt #900000 |
-| `rosa` | `#F4DCD8` | Nebentext auf Rot (5.6:1) |
+| `rot` | `#943838` | Markenrot, gedämpft: gleicher Farbton wie das Logo (#900000), weniger Sättigung. Ganze Flächen (PV, Ortsband, Kontakt, Buttons) mit weisser Schrift, Fokusring. Das Logo selbst bleibt #900000 |
+| `rosa` | `#F4DCD8` | Nebentext auf Rot (5.6:1), zweite Zeile im Ortsband |
 | `weiss` | `#FFFFFF` | Schrift auf Rot, Tinte und über dem Hero-Bild |
 
 Schriften (Google Fonts, selbst gehostet über Fontsource, kein Abruf bei Google):

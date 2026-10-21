@@ -49,9 +49,9 @@ export default function Ortsband() {
   }, [])
 
   return (
-    <div ref={root} aria-hidden="true" className="overflow-hidden border-y border-tinte/15 bg-papier py-16 lg:py-24">
-      <Row items={orte} dir="left" className="head text-[clamp(3.5rem,9vw,9rem)] text-tinte" />
-      <Row items={materialien} dir="right" className="head mt-2 text-[clamp(3.5rem,9vw,9rem)] text-rot" />
+    <div ref={root} aria-hidden="true" className="overflow-hidden bg-rot py-16 lg:py-24">
+      <Row items={orte} dir="left" className="head text-[clamp(3.5rem,9vw,9rem)] text-weiss" />
+      <Row items={materialien} dir="right" className="head mt-2 text-[clamp(3.5rem,9vw,9rem)] text-rosa" />
     </div>
   )
 }
