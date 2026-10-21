@@ -20,7 +20,8 @@ Vor jeder Gestaltungsarbeit den Skill `frontend-design` laden (`.claude/skills/f
 - Nicht ein einzelnes Wort in einer Headline kursiv oder farbig hervorheben.
 - Bewegung (Kunde wünscht eine dynamische Seite): eine orchestrierte Szene beim Laden (Hero), danach nur
   scroll-gekoppelte Bewegung mit Bezug zum Handwerk, zentral in `src/lib/motion.js` über data-Attribute:
-  Parallaxe, «Hobel»-Freilegung von Bildern, einfahrende Überschriften, Wort-für-Wort-Zitat, Ortsband.
+  Parallaxe, «Hobel»-Freilegung von Bildern, einfahrende Überschriften und Bilder, Wort-für-Wort-Zitat, Ortsband.
+  Fotos immer über `src/components/Foto.jsx` (weiches Einblenden nach dem Laden, nie hartes Aufploppen).
   Keine Endlosschleifen ohne Pause-Knopf, kein generisches Fade-up auf jeder Sektion.
   Alles nur bei `prefers-reduced-motion: no-preference`; ohne JS ist jeder Inhalt sichtbar.
 - Alles linksbündig. Zentrierter Text nur, wenn es einen Grund gibt.

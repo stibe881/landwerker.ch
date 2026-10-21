@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 //   data-parallax="0.15"   Element läuft langsamer (positiv) oder schneller (negativ) mit
 //   data-plane             Bild wird freigelegt wie unter dem Hobel (Wisch von links)
 //   data-slide="0.08"      Überschrift fährt beim Scrollen von rechts in ihre Position (Anteil der Breite)
+//   data-enter="left"      Bild fährt beim Scrollen von links in seine Position (mit data-plane kombinierbar)
 //   data-words             Wörter färben sich im Lesetempo von Grau zu Tinte
 // Alles nur bei prefers-reduced-motion: no-preference. Ohne JS bleibt der Inhalt vollständig sichtbar.
 export function useScrollMotion(scope) {
@@ -42,6 +43,14 @@ export function useScrollMotion(scope) {
           )
         })
 
+        gsap.utils.toArray('[data-enter="left"]').forEach((el) => {
+          gsap.fromTo(
+            el,
+            { xPercent: -30 },
+            { xPercent: 0, ease: 'none', scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 35%', scrub: 0.6 } },
+          )
+        })
+
         gsap.utils.toArray('[data-words]').forEach((el) => {
           gsap.fromTo(
             el.querySelectorAll('[data-word]'),
@@ -58,10 +67,27 @@ export function useScrollMotion(scope) {
       })
     }, scope)
 
-    // Lazy geladene Bilder verschieben das Layout: danach Positionen neu messen
-    const refresh = () => ScrollTrigger.refresh()
+    // Spät geladene Schriften und Bilder verändern die Seitenhöhe. Sonst starten die Effekte an
+    // veralteten Positionen (zu spät oder zu früh). Daher bei jeder Höhenänderung neu messen.
+    let timer
+    const refresh = () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => ScrollTrigger.refresh(), 150)
+    }
+    let lastHeight = document.body.scrollHeight
+    const ro = new ResizeObserver(() => {
+      const h = document.body.scrollHeight
+      if (h !== lastHeight) {
+        lastHeight = h
+        refresh()
+      }
+    })
+    ro.observe(document.body)
+    document.fonts?.ready.then(refresh)
     window.addEventListener('load', refresh)
     return () => {
+      clearTimeout(timer)
+      ro.disconnect()
       window.removeEventListener('load', refresh)
       ctx.revert()
       mm.revert()

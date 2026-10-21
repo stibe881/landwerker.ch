@@ -1,4 +1,5 @@
 import { werkstatt } from '../content.js'
+import Foto from '../components/Foto.jsx'
 
 export default function Werkstatt() {
   return (
@@ -21,8 +22,11 @@ export default function Werkstatt() {
         </figure>
 
         <div className="mt-24 grid gap-14 lg:mt-32 lg:grid-cols-12 lg:gap-x-10">
+          {/* Fährt beim Scrollen von links herein und wird dabei freigelegt; das Foto blendet nach dem Laden weich ein */}
           <figure className="-mx-5 overflow-hidden sm:-mx-8 lg:col-span-5 lg:-ml-12 lg:mr-0">
-            <img data-parallax="-0.12" src={werkstatt.image} alt={werkstatt.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full scale-110 object-cover" />
+            <div data-plane data-enter="left">
+              <Foto src={werkstatt.image} alt={werkstatt.alt} className="aspect-[4/5]" />
+            </div>
           </figure>
 
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-16">
