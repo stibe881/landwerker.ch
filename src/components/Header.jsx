@@ -42,15 +42,14 @@ export default function Header() {
       } ${hidden && !open ? '-translate-y-full focus-within:translate-y-0' : ''}`}
     >
       <div className="wrap flex h-18 items-center justify-between gap-8">
-        {/* Original-Logo in Markenrot. Auf Kohle hätte es nur ~2:1 Kontrast, daher auf eigener Kalk-Tafel
-            (wie das Firmenschild an der Baustelle). */}
-        <Link to="/" className="block bg-kalk px-3 py-2 focus-ring">
+        {/* Original-Logo in Markenrot, freigestellt wie vom Kunden geliefert (Logos sind von WCAG 1.4.3 ausgenommen) */}
+        <Link to="/" className="block focus-ring">
           <img
             src={`${import.meta.env.BASE_URL}media/logo-landwerker.png`}
             alt="Landwerker GmbH, Holzbau & Unterhalt – zur Startseite"
             width="798"
             height="242"
-            className="h-9 w-auto sm:h-11"
+            className="h-11 w-auto sm:h-14"
           />
         </Link>
 
