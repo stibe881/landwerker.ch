@@ -9,16 +9,20 @@ export default function Werkstatt() {
         </h2>
         <figure className="lg:ml-[8.333%] lg:w-10/12">
           <blockquote>
-            <p className="font-serif text-[clamp(2.5rem,6.5vw,6.75rem)] font-light leading-[1.02] tracking-[-0.02em]">
-              «{werkstatt.quote}»
+            <p data-words className="font-serif text-[clamp(2.5rem,6.5vw,6.75rem)] font-light leading-[1.02] tracking-[-0.02em]">
+              {`«${werkstatt.quote}»`.split(' ').map((w, i) => (
+                <span key={i} data-word>
+                  {w}{' '}
+                </span>
+              ))}
             </p>
           </blockquote>
           <figcaption className="mt-6 text-staub">Das Credo der Landwerker GmbH</figcaption>
         </figure>
 
         <div className="mt-24 grid gap-14 lg:mt-32 lg:grid-cols-12 lg:gap-x-10">
-          <figure className="-mx-5 sm:-mx-8 lg:col-span-5 lg:-ml-12 lg:mr-0">
-            <img src={werkstatt.image} alt={werkstatt.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover" />
+          <figure className="-mx-5 overflow-hidden sm:-mx-8 lg:col-span-5 lg:-ml-12 lg:mr-0">
+            <img data-parallax="-0.12" src={werkstatt.image} alt={werkstatt.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full scale-110 object-cover" />
           </figure>
 
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-16">

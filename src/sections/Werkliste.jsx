@@ -7,10 +7,10 @@ const span = `${Math.min(...years)} und ${Math.max(...years)}`
 
 // Auswahl oben: Formate bleiben, wie fotografiert. Bewusst ungleich gesetzt.
 const featured = [
-  { i: 0, cls: 'lg:col-span-7 lg:row-start-1', ratio: 'aspect-[16/9]' },
-  { i: 5, cls: 'lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:pt-40', ratio: 'aspect-[4/5]' },
-  { i: 7, cls: 'lg:col-span-4 lg:col-start-2 lg:row-start-2', ratio: 'aspect-[4/3]' },
-  { i: 8, cls: 'lg:col-span-6 lg:col-start-4 lg:row-start-3', ratio: 'aspect-[16/10]' },
+  { i: 0, cls: 'lg:col-span-7 lg:row-start-1', ratio: 'aspect-[16/9]', speed: 0.1 },
+  { i: 5, cls: 'lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:pt-40', ratio: 'aspect-[4/5]', speed: -0.3 },
+  { i: 7, cls: 'lg:col-span-4 lg:col-start-2 lg:row-start-2', ratio: 'aspect-[4/3]', speed: 0.25 },
+  { i: 8, cls: 'lg:col-span-6 lg:col-start-4 lg:row-start-3', ratio: 'aspect-[16/10]', speed: -0.1 },
 ]
 
 const label = (id) => categories.find((c) => c.id === id)?.label
@@ -70,10 +70,10 @@ export default function Werkliste() {
         </div>
 
         <ul className="mt-20 grid gap-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-16" aria-label="Ausgewählte Arbeiten">
-          {featured.map(({ i, cls, ratio }) => {
+          {featured.map(({ i, cls, ratio, speed }) => {
             const p = projects[i]
             return (
-              <li key={p.image} className={cls}>
+              <li key={p.image} data-parallax={speed} className={cls}>
                 <figure>
                   <img src={img(p.image)} alt={p.alt} loading="lazy" decoding="async" className={`${ratio} w-full object-cover`} />
                   <figcaption className="mt-3 flex justify-between gap-6 text-base">

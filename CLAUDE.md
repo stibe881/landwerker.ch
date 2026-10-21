@@ -18,8 +18,11 @@ Vor jeder Gestaltungsarbeit den Skill `frontend-design` laden (`.claude/skills/f
 - Keine Versal-Labels («Eyebrows») über Überschriften, keine Meta-Zeilen mit Mittelpunkt (A · B · C),
   kein «→» in Buttons und Links, keine 01/02/03-Nummerierung ohne echte Reihenfolge.
 - Nicht ein einzelnes Wort in einer Headline kursiv oder farbig hervorheben.
-- Bewegung: eine einzige orchestrierte Szene (Hero beim Laden). Sonst nur Bewegung als Antwort auf eine
-  Handlung (Hover in der Werkliste, Filter). Kein Fade-up auf jeder Sektion. `prefers-reduced-motion` respektieren.
+- Bewegung (Kunde wünscht eine dynamische Seite): eine orchestrierte Szene beim Laden (Hero), danach nur
+  scroll-gekoppelte Bewegung mit Bezug zum Handwerk, zentral in `src/lib/motion.js` über data-Attribute:
+  Parallaxe, «Hobel»-Freilegung von Bildern, einfahrende Überschriften, Wort-für-Wort-Zitat, Ortsband.
+  Keine Endlosschleifen ohne Pause-Knopf, kein generisches Fade-up auf jeder Sektion.
+  Alles nur bei `prefers-reduced-motion: no-preference`; ohne JS ist jeder Inhalt sichtbar.
 - Alles linksbündig. Zentrierter Text nur, wenn es einen Grund gibt.
 
 ## Designsystem

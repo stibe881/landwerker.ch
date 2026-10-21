@@ -5,11 +5,21 @@ import Logo from './Logo.jsx'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    let last = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 60)
+      // Erst ab 400 px verstecken, kleine Bewegungen ignorieren
+      if (Math.abs(y - last) > 8) {
+        setHidden(y > last && y > 400)
+        last = y
+      }
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -28,9 +38,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top,0px)] transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top,0px)] transition-[background-color,transform] duration-300 motion-reduce:transition-none ${
         solid ? 'bg-kohle' : 'bg-transparent'
-      }`}
+      } ${hidden && !open ? '-translate-y-full focus-within:translate-y-0' : ''}`}
     >
       <div className="wrap flex h-18 items-center justify-between gap-8">
         <Link to="/" className="focus-ring" aria-label="Landwerker GmbH, zur Startseite">
