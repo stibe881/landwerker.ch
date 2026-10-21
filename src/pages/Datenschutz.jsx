@@ -72,7 +72,7 @@ export default function Datenschutz() {
           Auswertung statt.
         </p>
         <p>
-          <button type="button" onClick={openConsentSettings} className="underline underline-offset-4 hover:text-sand focus-ring">
+          <button type="button" onClick={openConsentSettings} className="underline underline-offset-4 hover:text-rot focus-ring">
             Cookie-Einstellungen jetzt ändern
           </button>
         </p>

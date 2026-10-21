@@ -45,5 +45,5 @@ Neue Referenzbilder als WebP nach `public/media/work/` legen und in `projects` e
 ## Hero-Bild
 
 `public/media/hero-terrasse.webp` (2000 px) und `hero-terrasse-1100.webp` (Mobile), vom Kunden vorgegeben.
-Darüber liegt eine gleichmässige Abdunkelung (60 % Kohle), damit weisse Schrift auch über dem hellen Himmel
-mindestens 5:1 Kontrast hat. Beim Austausch des Bildes diesen Wert neu prüfen.
+Darüber liegt eine gleichmässige Abdunkelung (65 % Tinte), damit weisse Schrift auch über dem hellen Himmel
+mindestens 4.6:1 Kontrast hat. Beim Austausch des Bildes diesen Wert neu prüfen.

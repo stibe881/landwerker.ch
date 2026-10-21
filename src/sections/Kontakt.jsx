@@ -17,23 +17,23 @@ function validate(v) {
 }
 
 const input =
-  'mt-2 block w-full border-0 border-b-2 bg-transparent px-0 py-3 text-xl text-kalk focus:border-sand focus:outline-none focus:ring-0'
+  'mt-2 block w-full border-0 border-b-2 bg-transparent px-0 py-3 text-xl text-tinte focus:border-rot focus:outline-none focus:ring-0'
 
 function Field({ id, label, required, error, hint, children }) {
   return (
     <div>
       <label htmlFor={id} className="text-lg">
         {label}
-        {!required && <span className="ml-2 text-base text-staub">(optional)</span>}
+        {!required && <span className="ml-2 text-base text-grau">(optional)</span>}
       </label>
       {children}
       {hint && !error && (
-        <p id={`${id}-hint`} className="mt-2 text-base text-staub">
+        <p id={`${id}-hint`} className="mt-2 text-base text-grau">
           {hint}
         </p>
       )}
       {error && (
-        <p id={`${id}-error`} className="mt-2 text-base text-fehler">
+        <p id={`${id}-error`} className="mt-2 text-base text-rot">
           {error}
         </p>
       )}
@@ -58,7 +58,7 @@ export default function Kontakt() {
     'aria-invalid': errors[key] ? true : undefined,
     'aria-describedby': errors[key] ? `${key}-error` : hasHint ? `${key}-hint` : undefined,
   })
-  const line = (key) => (errors[key] ? 'border-fehler' : 'border-kalk/30')
+  const line = (key) => (errors[key] ? 'border-rot' : 'border-tinte/30')
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -91,7 +91,7 @@ export default function Kontakt() {
   return (
     <section id="kontakt" tabIndex={-1} aria-labelledby="kontakt-title" className="outline-none lg:grid lg:grid-cols-12">
       {/* Kontaktfläche in Sand, wie eine Werkstatttafel */}
-      <div className="bg-sand px-5 pb-16 pt-24 text-kohle sm:px-8 lg:col-span-5 lg:pb-28 lg:pl-12 lg:pr-12 lg:pt-32">
+      <div className="bg-rot px-5 pb-16 pt-24 text-weiss sm:px-8 lg:col-span-5 lg:pb-28 lg:pl-12 lg:pr-12 lg:pt-32">
         <h2 id="kontakt-title" className="head text-[clamp(3.5rem,6vw,6.5rem)]">
           Projekt anfragen
         </h2>
@@ -100,7 +100,7 @@ export default function Kontakt() {
         </p>
         <dl className="mt-14 space-y-6">
           <div>
-            <dt className="text-base text-lehm">Büro</dt>
+            <dt className="text-base text-rosa">Büro</dt>
             <dd>
               <a href={`tel:${company.phoneOfficeHref}`} className="head text-5xl hover:underline focus-ring-dark">
                 {company.phoneOffice}
@@ -108,7 +108,7 @@ export default function Kontakt() {
             </dd>
           </div>
           <div>
-            <dt className="text-base text-lehm">Mobile</dt>
+            <dt className="text-base text-rosa">Mobile</dt>
             <dd>
               <a href={`tel:${company.phoneMobileHref}`} className="head text-5xl hover:underline focus-ring-dark">
                 {company.phoneMobile}
@@ -116,7 +116,7 @@ export default function Kontakt() {
             </dd>
           </div>
           <div>
-            <dt className="text-base text-lehm">E-Mail</dt>
+            <dt className="text-base text-rosa">E-Mail</dt>
             <dd>
               <a href={`mailto:${company.email}`} className="break-all underline underline-offset-4 focus-ring-dark">
                 {company.email}
@@ -124,7 +124,7 @@ export default function Kontakt() {
             </dd>
           </div>
           <div>
-            <dt className="text-base text-lehm">Werkstatt</dt>
+            <dt className="text-base text-rosa">Werkstatt</dt>
             <dd>
               {company.street}, {company.zip} {company.city}
             </dd>
@@ -136,7 +136,7 @@ export default function Kontakt() {
         {status === 'sent' ? (
           <div role="status">
             <p className="head text-5xl">Anfrage gesendet.</p>
-            <p className="mt-4 text-staub">Wir melden uns persönlich bei Ihnen.</p>
+            <p className="mt-4 text-grau">Wir melden uns persönlich bei Ihnen.</p>
           </div>
         ) : (
           <form ref={formRef} onSubmit={onSubmit} noValidate aria-describedby={statusId} className="space-y-10">
@@ -156,7 +156,7 @@ export default function Kontakt() {
             </div>
 
             <Field id="topic" label="Worum geht es?" error={errors.topic}>
-              <select id="topic" name="topic" value={values.topic} onChange={set('topic')} className={`${input} ${line('topic')} cursor-pointer [&>option]:bg-kohle`}>
+              <select id="topic" name="topic" value={values.topic} onChange={set('topic')} className={`${input} ${line('topic')} cursor-pointer [&>option]:bg-papier`}>
                 <option value="">Bitte wählen</option>
                 <option>Terrasse</option>
                 <option>Umbau oder Innenausbau</option>
@@ -186,12 +186,12 @@ export default function Kontakt() {
                   required
                   checked={values.consent}
                   onChange={set('consent')}
-                  className="mt-1.5 h-5 w-5 shrink-0 cursor-pointer accent-sand focus-ring"
+                  className="mt-1.5 h-5 w-5 shrink-0 cursor-pointer accent-rot focus-ring"
                   {...aria('consent')}
                 />
                 <label htmlFor="consent" className="cursor-pointer text-base">
                   Ich habe die{' '}
-                  <Link to="/datenschutz" className="underline underline-offset-4 hover:text-sand focus-ring">
+                  <Link to="/datenschutz" className="underline underline-offset-4 hover:text-rot focus-ring">
                     Datenschutzerklärung
                   </Link>{' '}
                   gelesen. Die Landwerker GmbH darf meine Angaben verwenden, um diese Anfrage zu bearbeiten. Ich kann das
@@ -199,7 +199,7 @@ export default function Kontakt() {
                 </label>
               </div>
               {errors.consent && (
-                <p id="consent-error" className="mt-2 pl-9 text-base text-fehler">
+                <p id="consent-error" className="mt-2 pl-9 text-base text-rot">
                   {errors.consent}
                 </p>
               )}
@@ -209,15 +209,15 @@ export default function Kontakt() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="min-h-14 bg-kalk px-10 font-display text-2xl font-semibold uppercase text-kohle hover:bg-sand disabled:opacity-60 focus-ring"
+                className="min-h-14 bg-tinte px-10 font-display text-2xl font-semibold uppercase text-weiss hover:bg-rot disabled:opacity-60 focus-ring"
               >
                 {status === 'sending' ? 'Wird gesendet …' : 'Anfrage senden'}
               </button>
               <p id={statusId} role="status" aria-live="polite" className="text-base">
                 {status === 'error' && (
-                  <span className="text-fehler">Senden fehlgeschlagen. Rufen Sie uns an oder schreiben Sie an {company.email}.</span>
+                  <span className="text-rot">Senden fehlgeschlagen. Rufen Sie uns an oder schreiben Sie an {company.email}.</span>
                 )}
-                {status === 'preview' && <span className="text-sand">Vorschau: Eingaben gültig. Hier wird nichts versendet.</span>}
+                {status === 'preview' && <span className="text-tinte">Vorschau: Eingaben gültig. Hier wird nichts versendet.</span>}
               </p>
             </div>
           </form>

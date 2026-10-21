@@ -11,27 +11,31 @@
   --font-display: "Big Shoulders Display Variable", "Arial Narrow", sans-serif;
   --font-serif: "Newsreader Variable", Georgia, "Times New Roman", serif;
 
-  /* Kontrast: kalk/kohle 18.7, staub/kohle 6.8, staub/rinde 5.6, kohle/sand 8.0, lehm/sand 5.4 */
-  --color-kohle: #121212;
-  --color-rinde: #2a231d;
-  --color-sand: #c4a57a;
-  --color-kalk: #ffffff;
-  --color-staub: #a39b90;
-  --color-lehm: #3b3128;
-  --color-fehler: #f2a88e;
+  /* Kundendesign (Logo und bisherige landwerker.ch). Kontraste:
+     tinte/papier 13.6, grau/papier 5.9, grau/creme 5.4, rot/papier 9.3, weiss/rot 9.6,
+     rosa/rot 6.9, weiss/tinte 14.1, nebel/tinte 8.3, ocker/tinte 4.9 (ocker nie auf hellem Grund) */
+  --color-papier: #fcfbf7;
+  --color-creme: #f6f2e4;
+  --color-tinte: #322b11;
+  --color-grau: #6b6243;
+  --color-rot: #900000;
+  --color-rosa: #f2d3cf;
+  --color-nebel: #cfc6a8;
+  --color-ocker: #b0973b;
+  --color-weiss: #ffffff;
 }
 
 /* Grundfarben und Schrift bewusst ausserhalb der Cascade-Layer: Ungeschichtete Regeln einer
    einbettenden Umgebung (z. B. body { background:#fff; color:#000 }) würden sonst gewinnen
    und weisse Schrift auf weissem Grund erzeugen. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-padding-top: 5rem;
 }
 html body {
   margin: 0;
-  background: var(--color-kohle);
-  color: var(--color-kalk);
+  background: var(--color-papier);
+  color: var(--color-tinte);
   font-family: var(--font-serif);
   font-size: 1.125rem;
   line-height: 1.6;
@@ -50,10 +54,10 @@ html body {
     text-wrap: balance;
   }
   ::selection {
-    @apply bg-sand text-kohle;
+    @apply bg-rot text-weiss;
   }
   :focus-visible {
-    outline: 2px solid var(--color-sand);
+    outline: 2px solid var(--color-rot);
     outline-offset: 3px;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -65,9 +69,9 @@ html body {
   @apply mx-auto w-full max-w-[96rem] px-5 sm:px-8 lg:px-12;
 }
 
-/* Sichtbarer Fokusring für Tastaturbedienung */
+/* Sichtbarer Fokusring für Tastaturbedienung (heller Grund). Offset transparent: passt auf jede Fläche. */
 @utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand focus-visible:ring-offset-2 focus-visible:ring-offset-kohle;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rot focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }
 
 /* Überschriften: schmale Grotesk, gesetzt wie Beschriftung auf der Baustelle */
@@ -75,7 +79,7 @@ html body {
   @apply font-display font-semibold uppercase leading-[0.92] tracking-[0.01em];
 }
 
-/* Fokusring auf Sand-Flächen */
+/* Fokusring auf roten und dunklen Flächen */
 @utility focus-ring-dark {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kohle focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-weiss focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }

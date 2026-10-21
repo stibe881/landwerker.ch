@@ -58,13 +58,13 @@ export default function Werkliste() {
   }
 
   return (
-    <section id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="bg-kohle outline-none">
+    <section id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="bg-papier outline-none">
       <div className="wrap pb-28 pt-28 lg:pb-40 lg:pt-40">
         <div className="grid gap-8 lg:grid-cols-12">
           <h2 id="werkliste-title" className="head text-[clamp(4rem,10vw,10rem)] lg:col-span-7">
             Werkliste
           </h2>
-          <p className="max-w-[28rem] text-staub lg:col-span-4 lg:col-start-9 lg:self-end">
+          <p className="max-w-[28rem] text-grau lg:col-span-4 lg:col-start-9 lg:self-end">
             {projects.length} Arbeiten zwischen {span}. Jedes Foto stammt von unseren Baustellen, keines aus einer Bilddatenbank.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function Werkliste() {
                     <span>
                       {p.work}, {p.material}
                     </span>
-                    <span className="shrink-0 text-staub">{where(p)}</span>
+                    <span className="shrink-0 text-grau">{where(p)}</span>
                   </figcaption>
                 </figure>
               </li>
@@ -89,7 +89,7 @@ export default function Werkliste() {
         </ul>
 
         <div className="mt-28 lg:mt-40">
-          <div role="group" aria-label="Werkliste filtern" className="flex flex-wrap gap-x-8 gap-y-3 border-b border-kalk/15 pb-5">
+          <div role="group" aria-label="Werkliste filtern" className="flex flex-wrap gap-x-8 gap-y-3 border-b border-tinte/15 pb-5">
             {categories.map((c) => {
               const n = c.id === 'alle' ? projects.length : projects.filter((p) => p.cat === c.id).length
               const on = filter === c.id
@@ -100,7 +100,7 @@ export default function Werkliste() {
                   aria-pressed={on}
                   onClick={() => choose(c.id)}
                   className={`min-h-11 font-display text-2xl font-semibold uppercase focus-ring ${
-                    on ? 'text-sand underline decoration-2 underline-offset-8' : 'text-staub hover:text-kalk'
+                    on ? 'text-rot underline decoration-2 underline-offset-8' : 'text-grau hover:text-tinte'
                   }`}
                 >
                   {c.label} <span className="font-serif text-base font-normal normal-case">({n})</span>
@@ -117,7 +117,7 @@ export default function Werkliste() {
             <table ref={list} className="hidden w-full text-left text-base lg:col-span-8 lg:table">
               <caption className="sr-only">Alle Referenzen mit Jahr, Arbeit, Material und Ort</caption>
               <thead>
-                <tr className="text-staub">
+                <tr className="text-grau">
                   <th scope="col" className="py-4 pr-6 font-normal">Jahr</th>
                   <th scope="col" className="py-4 pr-6 font-normal">Arbeit</th>
                   <th scope="col" className="py-4 pr-6 font-normal">Material, Leistung</th>
@@ -132,13 +132,13 @@ export default function Werkliste() {
                     tabIndex={0}
                     onMouseEnter={() => setActive(p.idx)}
                     onFocus={() => setActive(p.idx)}
-                    className={`cursor-default border-t border-kalk/15 align-top outline-none transition-colors focus-visible:bg-rinde ${
-                      active === p.idx ? 'bg-rinde' : 'hover:bg-rinde'
+                    className={`cursor-default border-t border-tinte/15 align-top outline-none transition-colors focus-visible:bg-creme ${
+                      active === p.idx ? 'bg-creme' : 'hover:bg-creme'
                     }`}
                   >
-                    <td className="py-4 pl-3 pr-6 tabular-nums text-staub">{p.year ?? '–'}</td>
+                    <td className="py-4 pl-3 pr-6 tabular-nums text-grau">{p.year ?? '–'}</td>
                     <td className="py-4 pr-6">{p.work}</td>
-                    <td className="py-4 pr-6 text-staub">{p.material}</td>
+                    <td className="py-4 pr-6 text-grau">{p.material}</td>
                     <td className="py-4 pr-3">{p.place ?? '–'}</td>
                   </tr>
                 ))}
@@ -157,7 +157,7 @@ export default function Werkliste() {
                 />
                 <figcaption className="mt-3 text-base">
                   {current.work}
-                  <span className="block text-staub">
+                  <span className="block text-grau">
                     {label(current.cat)}
                     {where(current) && `, ${where(current)}`}
                   </span>
@@ -168,12 +168,12 @@ export default function Werkliste() {
             {/* Mobil: Liste mit Foto pro Eintrag */}
             <ul className="lg:hidden">
               {rows.map((p) => (
-                <li key={p.idx} className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-kalk/15 py-5">
+                <li key={p.idx} className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-tinte/15 py-5">
                   <img src={img(p.image)} alt={p.alt} loading="lazy" decoding="async" className="aspect-square w-full object-cover" />
                   <div className="text-base">
                     <p>{p.work}</p>
-                    <p className="text-staub">{p.material}</p>
-                    <p className="mt-1 text-staub">{where(p) || label(p.cat)}</p>
+                    <p className="text-grau">{p.material}</p>
+                    <p className="mt-1 text-grau">{where(p) || label(p.cat)}</p>
                   </div>
                 </li>
               ))}

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 //   data-parallax="0.15"   Element läuft langsamer (positiv) oder schneller (negativ) mit
 //   data-plane             Bild wird freigelegt wie unter dem Hobel (Wisch von links)
 //   data-slide="0.08"      Überschrift fährt beim Scrollen von rechts in ihre Position (Anteil der Breite)
-//   data-words             Wörter färben sich im Lesetempo von Staub zu Kalk
+//   data-words             Wörter färben sich im Lesetempo von Grau zu Tinte
 // Alles nur bei prefers-reduced-motion: no-preference. Ohne JS bleibt der Inhalt vollständig sichtbar.
 export function useScrollMotion(scope) {
   useLayoutEffect(() => {
@@ -45,10 +45,10 @@ export function useScrollMotion(scope) {
         gsap.utils.toArray('[data-words]').forEach((el) => {
           gsap.fromTo(
             el.querySelectorAll('[data-word]'),
-            // Hex-Werte statt CSS-Variablen: GSAP kann nur echte Farben interpolieren (staub → kalk)
-            { color: '#a39b90' },
+            // Hex-Werte statt CSS-Variablen: GSAP kann nur echte Farben interpolieren (grau → tinte)
+            { color: '#6b6243' },
             {
-              color: '#ffffff',
+              color: '#322b11',
               stagger: 0.1,
               ease: 'none',
               scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 30%', scrub: true },

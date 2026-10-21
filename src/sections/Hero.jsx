@@ -36,7 +36,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden">
+    <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden text-weiss">
       <div data-bgwrap className="absolute inset-0 -z-20">
         <img
           data-bg
@@ -49,8 +49,8 @@ export default function Hero() {
           className="h-full w-full object-cover object-[70%_center] lg:object-center"
         />
       </div>
-      {/* Gleichmässige Abdunkelung: weisse Schrift erreicht selbst über dem hellsten Himmel 5:1 */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-kohle/60" />
+      {/* Gleichmässige Abdunkelung in Tinte (65 %): weisse Schrift erreicht selbst über dem hellsten Himmel 4.6:1 */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-tinte/65" />
 
       <div className="wrap pb-10 pt-32 lg:pb-14">
         <h1 id="hero-title" className="font-stamp text-[clamp(4rem,13.5vw,15rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.005em]">
@@ -63,7 +63,7 @@ export default function Hero() {
           ))}
         </h1>
 
-        <div data-rule className="mt-8 h-px bg-kalk/40 lg:mt-12" />
+        <div data-rule className="mt-8 h-px bg-weiss/40 lg:mt-12" />
 
         <div data-after className="mt-6 grid gap-6 lg:grid-cols-12 lg:items-start">
           <p className="max-w-[30rem] text-xl leading-snug lg:col-span-5">
@@ -72,7 +72,7 @@ export default function Hero() {
           <div className="lg:col-span-4 lg:col-start-9 lg:flex lg:justify-end">
             <Link
               to={{ pathname: '/', hash: 'kontakt' }}
-              className="inline-flex min-h-14 items-center bg-sand px-8 font-display text-2xl font-semibold uppercase text-kohle hover:bg-kalk focus-ring"
+              className="inline-flex min-h-14 items-center bg-rot px-8 font-display text-2xl font-semibold uppercase text-weiss hover:bg-weiss hover:text-rot focus-ring-dark"
             >
               Projekt anfragen
             </Link>

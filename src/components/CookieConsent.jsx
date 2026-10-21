@@ -44,7 +44,7 @@ export default function CookieConsent() {
       tabIndex={-1}
       role="region"
       aria-labelledby={titleId}
-      className="fixed bottom-3 left-3 right-3 z-50 max-h-[85svh] max-w-md overflow-y-auto bg-sand p-6 text-kohle outline-none sm:bottom-6 sm:left-6 sm:right-auto"
+      className="fixed bottom-3 left-3 right-3 z-50 max-h-[85svh] max-w-md overflow-y-auto bg-rot p-6 text-weiss outline-none sm:bottom-6 sm:left-6 sm:right-auto"
     >
       <h2 id={titleId} className="head text-3xl">
         Cookies? Nur mit Ihrem Ja.
@@ -58,15 +58,15 @@ export default function CookieConsent() {
       </p>
 
       {details && (
-        <fieldset className="mt-5 space-y-4 border-t border-kohle/25 pt-5 text-base">
+        <fieldset className="mt-5 space-y-4 border-t border-weiss/30 pt-5 text-base">
           <legend className="sr-only">Kategorien</legend>
           <div className="flex items-start gap-3">
-            <input id="consent-necessary" type="checkbox" checked disabled className="mt-1 h-5 w-5 accent-kohle" aria-describedby="consent-necessary-desc" />
+            <input id="consent-necessary" type="checkbox" checked disabled className="mt-1 h-5 w-5 accent-weiss" aria-describedby="consent-necessary-desc" />
             <div>
               <label htmlFor="consent-necessary" className="font-semibold">
                 Notwendig (immer aktiv)
               </label>
-              <p id="consent-necessary-desc" className="text-lehm">
+              <p id="consent-necessary-desc" className="text-rosa">
                 Speichert Ihren Entscheid zu dieser Abfrage. Bleibt auf Ihrem Gerät.
               </p>
             </div>
@@ -77,14 +77,14 @@ export default function CookieConsent() {
               type="checkbox"
               checked={statistics}
               onChange={(e) => setStatistics(e.target.checked)}
-              className="mt-1 h-5 w-5 accent-kohle focus-ring-dark"
+              className="mt-1 h-5 w-5 accent-weiss focus-ring-dark"
               aria-describedby="consent-statistics-desc"
             />
             <div>
               <label htmlFor="consent-statistics" className="font-semibold">
                 Statistik
               </label>
-              <p id="consent-statistics-desc" className="text-lehm">
+              <p id="consent-statistics-desc" className="text-rosa">
                 Anonyme Zählung der Seitenaufrufe.
               </p>
             </div>
@@ -94,14 +94,14 @@ export default function CookieConsent() {
 
       {/* Ablehnen und Zustimmen sind gleich gross und gleich gestaltet */}
       <div className="mt-6 grid grid-cols-2 gap-2">
-        <button type="button" onClick={() => decide(false)} className={`${btn} bg-kohle text-kalk hover:bg-lehm`}>
+        <button type="button" onClick={() => decide(false)} className={`${btn} bg-papier text-tinte hover:bg-rosa`}>
           Ablehnen
         </button>
-        <button type="button" onClick={() => decide(true)} className={`${btn} bg-kohle text-kalk hover:bg-lehm`}>
+        <button type="button" onClick={() => decide(true)} className={`${btn} bg-papier text-tinte hover:bg-rosa`}>
           Zustimmen
         </button>
         {details ? (
-          <button type="button" onClick={() => decide(statistics)} className={`${btn} col-span-2 border-2 border-kohle hover:bg-kohle hover:text-kalk`}>
+          <button type="button" onClick={() => decide(statistics)} className={`${btn} col-span-2 border-2 border-weiss hover:bg-papier hover:text-tinte`}>
             Auswahl speichern
           </button>
         ) : (

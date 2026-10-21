@@ -33,13 +33,13 @@ export default function App() {
           e.preventDefault()
           document.getElementById('main')?.focus()
         }}
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-kalk focus:px-4 focus:py-3 focus:text-kohle focus-ring"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-tinte focus:px-4 focus:py-3 focus:text-weiss focus-ring"
       >
         Zum Inhalt springen
       </a>
       <ScrollManager />
       <Header />
-      <main id="main" tabIndex={-1} className="bg-kohle outline-none">
+      <main id="main" tabIndex={-1} className="bg-papier outline-none">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/impressum" element={<Impressum />} />

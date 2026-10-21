@@ -27,16 +27,19 @@ Vor jeder Gestaltungsarbeit den Skill `frontend-design` laden (`.claude/skills/f
 
 ## Designsystem
 
-Farben (Kontrast auf Kohle geprüft, Text immer ≥ 4.5:1):
+Farben aus dem Kundendesign (Logo-Rot und Farben der bisherigen landwerker.ch). Text immer ≥ 4.5:1:
 
 | Token | Hex | Rolle |
 |---|---|---|
-| `kohle` | `#121212` | Grundfläche (Vorgabe Kunde) |
-| `rinde` | `#2A231D` | dunkle Erdfläche, zweite Ebene |
-| `sand` | `#C4A57A` | dunkler Sand, nur als ganze Fläche mit Kohle-Schrift |
-| `kalk` | `#FFFFFF` | Schrift auf Kohle und Rinde |
-| `staub` | `#A39B90` | Nebentext auf Kohle |
-| `lehm` | `#3B3128` | Text auf Sand (Nebentext) |
+| `papier` | `#FCFBF7` | Grundfläche, Kopfzeile (Logo steht auf seinem eigenen Grund) |
+| `creme` | `#F6F2E4` | zweite helle Fläche (Über uns, Hover in der Werkliste) |
+| `tinte` | `#322B11` | Schrift auf hellem Grund; dunkle Fläche (Ortsband, Fusszeile, Hero-Abdunkelung 65 %) |
+| `grau` | `#6B6243` | Nebentext auf Papier und Creme |
+| `rot` | `#900000` | Markenrot aus dem Logo: ganze Flächen (PV, Kontakt, Buttons) mit weisser Schrift, Fokusring |
+| `rosa` | `#F2D3CF` | Nebentext auf Rot |
+| `nebel` | `#CFC6A8` | Nebentext auf Tinte |
+| `ocker` | `#B0973B` | nur auf Tinte (4.9:1), nie auf hellem Grund |
+| `weiss` | `#FFFFFF` | Schrift auf Rot, Tinte und über dem Hero-Bild |
 
 Schriften (Google Fonts, selbst gehostet über Fontsource, kein Abruf bei Google):
 

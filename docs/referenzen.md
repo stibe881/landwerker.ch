@@ -15,6 +15,6 @@ Die Screenshots liegen nicht im Repo (Rechte Dritter).
 
 1. Referenzen als Werkliste mit echten Daten (Ort, Jahr, Material, kWp/kWh), nicht als Kartenraster.
 2. Eine starke Geste pro Seite. Der Rest bleibt leise.
-3. Erdtöne als Flächen (Sand, Rinde) neben Kohle, keine Verläufe.
+3. Farben als ganze Flächen, keine Verläufe. (Seit Oktober 2026: Kundendesign mit Logo-Rot, siehe CLAUDE.md.)
 4. Eigene Fotos in ihrem Format, ungleich hoch.
 5. Keine Versal-Labels über Überschriften, keine Pfeile in Buttons, keine Nummerierung ohne Reihenfolge.

@@ -1,7 +1,7 @@
 import { holzbau, pv } from '../content.js'
 
 function ServiceList({ items, tone }) {
-  const line = tone === 'sand' ? 'border-kohle/25' : 'border-kalk/15'
+  const line = tone === 'rot' ? 'border-weiss/30' : 'border-tinte/15'
   return (
     <ul className={`mt-10 grid border-t ${line} sm:grid-cols-2 sm:gap-x-8`}>
       {items.map((s) => (
@@ -17,7 +17,7 @@ function ServiceList({ items, tone }) {
 export default function Leistungen() {
   return (
     <section id="leistungen" tabIndex={-1} aria-label="Leistungen" className="overflow-hidden outline-none lg:grid lg:grid-cols-12">
-      <article aria-labelledby="holzbau-title" className="bg-kohle lg:col-span-7">
+      <article aria-labelledby="holzbau-title" className="bg-papier lg:col-span-7">
         <div className="px-5 pb-20 pt-24 sm:px-8 lg:pb-28 lg:pl-12 lg:pr-16 lg:pt-32">
           <h2 id="holzbau-title" data-slide="0.1" className="head text-[clamp(3.25rem,7vw,7.5rem)]">
             {holzbau.title}
@@ -36,7 +36,7 @@ export default function Leistungen() {
         </div>
       </article>
 
-      <article aria-labelledby="pv-title" className="bg-sand text-kohle lg:col-span-5">
+      <article aria-labelledby="pv-title" className="bg-rot text-weiss lg:col-span-5">
         <div className="px-5 pb-20 pt-24 sm:px-8 lg:pb-28 lg:pl-12 lg:pr-12 lg:pt-32">
           <h2 id="pv-title" data-slide="0.05" className="head text-[clamp(3.25rem,5.4vw,6rem)]">
             {pv.title}
@@ -46,12 +46,12 @@ export default function Leistungen() {
               <p key={p}>{p}</p>
             ))}
           </div>
-          <ServiceList items={pv.services} tone="sand" />
+          <ServiceList items={pv.services} tone="rot" />
           <figure className="mt-12 max-w-[22rem]">
             <div data-plane>
             <img src={pv.image} alt={pv.alt} loading="lazy" decoding="async" className="aspect-[9/16] w-full object-cover" />
             </div>
-            <figcaption className="mt-3 text-base text-lehm">Technikraum einer Anlage in Menznau, 2026.</figcaption>
+            <figcaption className="mt-3 text-base text-rosa">Technikraum einer Anlage in Menznau, 2026.</figcaption>
           </figure>
         </div>
       </article>

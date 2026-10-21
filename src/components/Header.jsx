@@ -33,13 +33,12 @@ export default function Header() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const solid = scrolled || open || location.pathname !== '/'
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 pt-[env(safe-area-inset-top,0px)] transition-[background-color,transform] duration-300 motion-reduce:transition-none ${
-        solid ? 'bg-kohle' : 'bg-transparent'
-      } ${hidden && !open ? '-translate-y-full focus-within:translate-y-0' : ''}`}
+        scrolled ? 'border-b border-tinte/15' : ''
+      } bg-papier ${hidden && !open ? '-translate-y-full focus-within:translate-y-0' : ''}`}
     >
       <div className="wrap flex h-18 items-center justify-between gap-8">
         {/* Original-Logo in Markenrot, freigestellt wie vom Kunden geliefert (Logos sind von WCAG 1.4.3 ausgenommen) */}
@@ -57,7 +56,7 @@ export default function Header() {
           <ul className="flex items-center gap-8 font-display text-lg font-medium uppercase tracking-[0.03em]">
             {nav.map((item) => (
               <li key={item.id}>
-                <Link to={{ pathname: '/', hash: item.id }} className="hover:text-sand focus-ring">
+                <Link to={{ pathname: '/', hash: item.id }} className="hover:text-rot focus-ring">
                   {item.label}
                 </Link>
               </li>
@@ -65,7 +64,7 @@ export default function Header() {
             <li>
               <Link
                 to={{ pathname: '/', hash: 'kontakt' }}
-                className="inline-flex min-h-11 items-center bg-sand px-5 text-kohle hover:bg-kalk focus-ring"
+                className="inline-flex min-h-11 items-center bg-rot px-5 text-weiss hover:bg-tinte focus-ring"
               >
                 Projekt anfragen
               </Link>
@@ -88,10 +87,10 @@ export default function Header() {
         <nav id="mobile-nav" aria-label="Hauptnavigation mobil" className="md:hidden">
           <ul className="wrap flex flex-col pb-8 pt-2">
             {[...nav, { id: 'kontakt', label: 'Projekt anfragen' }].map((item, i) => (
-              <li key={item.label} className="border-t border-kalk/15">
+              <li key={item.label} className="border-t border-tinte/15">
                 <Link
                   to={{ pathname: '/', hash: item.id }}
-                  className={`head block py-4 text-4xl focus-ring ${i === nav.length ? 'text-sand' : ''}`}
+                  className={`head block py-4 text-4xl focus-ring ${i === nav.length ? 'text-rot' : ''}`}
                 >
                   {item.label}
                 </Link>
