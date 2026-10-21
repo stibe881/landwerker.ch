@@ -14,6 +14,7 @@ Vor jeder Gestaltungsarbeit den Skill `frontend-design` laden (`.claude/skills/f
   Feature-Grids mit Icons, Badge-Pillen, Testimonial-Slider).
 - Keine Verläufe als Dekoration. Farbe nur als ganze Fläche.
 - Keine Stock- oder KI-Bilder. Nur eigene Fotos von Landwerker-Baustellen.
+  Ausnahme: das Hero-Bild `public/media/hero-terrasse.webp`, vom Kunden vorgegeben.
 - Keine Versal-Labels («Eyebrows») über Überschriften, keine Meta-Zeilen mit Mittelpunkt (A · B · C),
   kein «→» in Buttons und Links, keine 01/02/03-Nummerierung ohne echte Reihenfolge.
 - Nicht ein einzelnes Wort in einer Headline kursiv oder farbig hervorheben.
@@ -49,7 +50,7 @@ Radien: 0. Schatten: keine.
 - Kontaktformular: Pflicht-Checkbox Datenschutz, im Frontend und im Server geprüft.
 - Impressum mit UID CHE-343.855.359 und HR-Nr. CH-100.4.806.817-8. Datenschutzerklärung unter `/datenschutz`.
 - WCAG 2.1 AA: Landmarks, Skip-Link, sichtbarer Fokus (`focus-visible:ring-2`), Alt-Text bei jedem Bild,
-  Video pausierbar, Formularfehler mit `aria-describedby`.
+  bewegte Medien pausierbar, Formularfehler mit `aria-describedby`.
 
 ## Arbeitsweise
 

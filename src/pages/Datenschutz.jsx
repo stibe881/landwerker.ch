@@ -40,7 +40,7 @@ export default function Datenschutz() {
           Hosting-Anbieter: <Placeholder>Name, Sitz, Land des Hosting-Anbieters</Placeholder>
         </p>
         <p>
-          Schriften (Google Fonts, lokal eingebunden), Bilder, Videos und Skripte liefern wir vom eigenen Server aus. Es werden keine Inhalte von Servern von Google, YouTube
+          Schriften (Google Fonts, lokal eingebunden), Bilder und Skripte liefern wir vom eigenen Server aus. Es werden keine Inhalte von Servern von Google, YouTube
           oder ähnlichen Diensten nachgeladen.
         </p>
       </Section>

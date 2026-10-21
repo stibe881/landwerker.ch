@@ -38,12 +38,12 @@ Neue Referenzbilder als WebP nach `public/media/work/` legen und in `projects` e
   und die Texte juristisch prüfen lassen.
 - Kontaktformular verlangt die Datenschutz-Einwilligung im Frontend und im Server.
 - Schriften (Google Fonts: Big Shoulders, Newsreader) werden über Fontsource selbst gehostet,
-  ebenso Bilder und Video. Kein Abruf bei Google, kein YouTube.
+  ebenso alle Bilder. Kein Abruf bei Google, kein YouTube.
 - Semantische Landmarks, Skip-Link, sichtbare Fokus-Ringe, Kontraste ≥ 5.4:1,
   Hintergrundvideo pausierbar und bei `prefers-reduced-motion` angehalten.
 
-## Hero-Video
+## Hero-Bild
 
-`public/media/hero.(mp4|webm)` ist aus eigenen Baustellenfotos gerendert
-(langsame Kamerafahrten, warm gegradet, Filmkorn) und läuft im Browser mit halber Geschwindigkeit.
-Für eine echte Filmaufnahme einfach die beiden Dateien und `hero-poster.jpg` ersetzen.
+`public/media/hero-terrasse.webp` (2000 px) und `hero-terrasse-1100.webp` (Mobile), vom Kunden vorgegeben.
+Darüber liegt eine gleichmässige Abdunkelung (60 % Kohle), damit weisse Schrift auch über dem hellen Himmel
+mindestens 5:1 Kontrast hat. Beim Austausch des Bildes diesen Wert neu prüfen.
