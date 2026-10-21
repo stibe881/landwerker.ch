@@ -13,7 +13,7 @@
 
   /* Kundendesign (Logo und bisherige landwerker.ch). Kontraste:
      tinte/papier 13.6, grau/papier 5.9, grau/creme 5.4, rot/papier 7.0, rot/creme 6.5, weiss/rot 7.3,
-     rosa/rot 5.6, weiss/tinte 14.1, nebel/tinte 8.3, ocker/tinte 4.9 (ocker nie auf hellem Grund).
+     rosa/rot 5.6, weiss/tinte 14.1.
      rot: gleicher Farbton wie das Logo-Rot #900000 (0°), gedämpft auf 45 % Sättigung, 40 % Helligkeit */
   --color-papier: #fcfbf7;
   --color-creme: #f6f2e4;
@@ -21,8 +21,6 @@
   --color-grau: #6b6243;
   --color-rot: #943838;
   --color-rosa: #f4dcd8;
-  --color-nebel: #cfc6a8;
-  --color-ocker: #b0973b;
   --color-weiss: #ffffff;
 }
 

@@ -13,7 +13,16 @@ function Row({ items, className, dir }) {
     <div data-band={dir} className={`flex w-max gap-[0.4em] whitespace-nowrap ${className}`}>
       {doubled.map((t, i) => (
         <span key={i} className="flex items-center gap-[0.4em]">
-          {t}
+          {/* Einheiten wie kWp und kWh dürfen nicht in Versalien stehen */}
+          {t.split(/(\bk(?:Wp|Wh)\b)/).map((part, j) =>
+            j % 2 ? (
+              <span key={j} className="normal-case">
+                {part}
+              </span>
+            ) : (
+              part
+            ),
+          )}
           <span className="inline-block h-[0.12em] w-[0.5em] bg-current opacity-40" />
         </span>
       ))}
@@ -40,9 +49,9 @@ export default function Ortsband() {
   }, [])
 
   return (
-    <div ref={root} aria-hidden="true" className="overflow-hidden bg-tinte py-16 lg:py-24">
-      <Row items={orte} dir="left" className="head text-[clamp(3.5rem,9vw,9rem)] text-weiss" />
-      <Row items={materialien} dir="right" className="head mt-2 text-[clamp(3.5rem,9vw,9rem)] text-ocker" />
+    <div ref={root} aria-hidden="true" className="overflow-hidden border-y border-tinte/15 bg-papier py-16 lg:py-24">
+      <Row items={orte} dir="left" className="head text-[clamp(3.5rem,9vw,9rem)] text-tinte" />
+      <Row items={materialien} dir="right" className="head mt-2 text-[clamp(3.5rem,9vw,9rem)] text-rot" />
     </div>
   )
 }
