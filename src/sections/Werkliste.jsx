@@ -1,6 +1,7 @@
-import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import gsap from 'gsap'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { gsap } from '../lib/motion.js'
 import { categories, img, projects } from '../content.js'
+import Foto from '../components/Foto.jsx'
 
 const years = projects.map((p) => p.year).filter(Boolean)
 const span = `${Math.min(...years)} und ${Math.max(...years)}`
@@ -19,9 +20,34 @@ const where = (p) => [p.place, p.year].filter(Boolean).join(', ')
 export default function Werkliste() {
   const [filter, setFilter] = useState('alle')
   const [active, setActive] = useState(0)
+  // Vorschau als Stapel: das neue Foto schiebt sich über das bisherige, statt es hart zu ersetzen
+  const [stack, setStack] = useState([0])
   const preview = useRef(null)
   const list = useRef(null)
+  const section = useRef(null)
   const first = useRef(true)
+
+  // Alle Fotos der Werkliste vorladen, sobald die Sektion in Reichweite kommt: Hover zeigt sie sofort
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        projects.forEach((p) => {
+          const pre = new Image()
+          pre.decoding = 'async'
+          pre.src = img(p.image)
+        })
+        io.disconnect()
+      },
+      { rootMargin: '800px 0px' },
+    )
+    io.observe(section.current)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    setStack((s) => (s[s.length - 1] === active ? s : [s[s.length - 1], active]))
+  }, [active])
 
   const rows = useMemo(
     () => projects.map((p, idx) => ({ ...p, idx })).filter((p) => filter === 'alle' || p.cat === filter),
@@ -29,15 +55,22 @@ export default function Werkliste() {
   )
   const current = projects[active] ?? projects[0]
 
-  // Bewegung nur als Antwort auf eine Handlung: Foto wechselt, Liste filtert
+  // Bewegung nur als Antwort auf eine Handlung: neues Foto wird von unten über das alte gezogen
   useLayoutEffect(() => {
-    if (first.current) return
+    if (stack.length < 2) return
+    const top = preview.current?.querySelector('[data-top]')
+    if (!top) return
     const mm = gsap.matchMedia()
     mm.add('(prefers-reduced-motion: no-preference)', () => {
-      gsap.fromTo(preview.current, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.55, ease: 'power3.out' })
+      gsap.set(top, { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.08 })
+      const play = () =>
+        gsap.to(top, { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 0.75, ease: 'power3.out', overwrite: true })
+      // Erst animieren, wenn das Bild wirklich da ist, sonst läuft die Bewegung ins Leere
+      if (top.complete && top.naturalWidth) play()
+      else top.addEventListener('load', play, { once: true })
     })
     return () => mm.revert()
-  }, [active])
+  }, [stack])
 
   useLayoutEffect(() => {
     if (first.current) {
@@ -58,7 +91,7 @@ export default function Werkliste() {
   }
 
   return (
-    <section id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="bg-papier outline-none">
+    <section ref={section} id="werkliste" tabIndex={-1} aria-labelledby="werkliste-title" className="bg-papier outline-none">
       <div className="wrap pb-28 pt-28 lg:pb-40 lg:pt-40">
         <div className="grid gap-8 lg:grid-cols-12">
           <h2 id="werkliste-title" className="head text-[clamp(4rem,10vw,10rem)] lg:col-span-7">
@@ -75,7 +108,9 @@ export default function Werkliste() {
             return (
               <li key={p.image} data-parallax={speed} className={cls}>
                 <figure>
-                  <img src={img(p.image)} alt={p.alt} loading="lazy" decoding="async" className={`${ratio} w-full object-cover`} />
+                  <div data-plane>
+                    <Foto src={img(p.image)} alt={p.alt} className={ratio} />
+                  </div>
                   <figcaption className="mt-3 flex justify-between gap-6 text-base">
                     <span>
                       {p.work}, {p.material}
@@ -147,14 +182,22 @@ export default function Werkliste() {
 
             <div className="hidden lg:col-span-4 lg:block">
               <figure className="sticky top-28 mt-14">
-                <img
-                  ref={preview}
-                  key={current.image}
-                  src={img(current.image)}
-                  alt={current.alt}
-                  decoding="async"
-                  className="aspect-[4/5] w-full object-cover"
-                />
+                <div ref={preview} className="relative aspect-[4/5] overflow-hidden bg-creme">
+                  {stack.map((idx, i) => {
+                    const top = i === stack.length - 1
+                    return (
+                      <img
+                        key={idx}
+                        data-top={top || undefined}
+                        src={img(projects[idx].image)}
+                        alt={top ? projects[idx].alt : ''}
+                        aria-hidden={top ? undefined : true}
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    )
+                  })}
+                </div>
                 <figcaption className="mt-3 text-base">
                   {current.work}
                   <span className="block text-grau">
@@ -169,7 +212,7 @@ export default function Werkliste() {
             <ul className="lg:hidden">
               {rows.map((p) => (
                 <li key={p.idx} className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-tinte/15 py-5">
-                  <img src={img(p.image)} alt={p.alt} loading="lazy" decoding="async" className="aspect-square w-full object-cover" />
+                  <Foto src={img(p.image)} alt={p.alt} className="aspect-square" />
                   <div className="text-base">
                     <p>{p.work}</p>
                     <p className="text-grau">{p.material}</p>

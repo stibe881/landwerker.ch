@@ -1,4 +1,5 @@
 import { holzbau, pv } from '../content.js'
+import Foto from '../components/Foto.jsx'
 
 function ServiceList({ items, tone }) {
   const line = tone === 'rot' ? 'border-weiss/30' : 'border-tinte/15'
@@ -23,7 +24,7 @@ export default function Leistungen() {
             {holzbau.title}
           </h2>
           <figure data-plane className="mt-12 lg:-mr-16">
-            <img src={holzbau.image} alt={holzbau.alt} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover" />
+            <Foto src={holzbau.image} alt={holzbau.alt} className="aspect-[16/10]" />
           </figure>
           <div className="mt-10 grid gap-x-10 lg:grid-cols-7">
             <div className="max-w-[34rem] space-y-4 lg:col-span-5">
@@ -49,7 +50,7 @@ export default function Leistungen() {
           <ServiceList items={pv.services} tone="rot" />
           <figure className="mt-12 max-w-[22rem]">
             <div data-plane>
-            <img src={pv.image} alt={pv.alt} loading="lazy" decoding="async" className="aspect-[9/16] w-full object-cover" />
+            <Foto src={pv.image} alt={pv.alt} className="aspect-[9/16]" />
             </div>
             <figcaption className="mt-3 text-base text-rosa">Technikraum einer Anlage in Menznau, 2026.</figcaption>
           </figure>
