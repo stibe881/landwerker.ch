@@ -1,6 +1,6 @@
 import { company } from '../content.js'
 import { openConsentSettings } from '../lib/consent.js'
-import { LegalLayout, Placeholder, Section } from './LegalLayout.jsx'
+import { LegalLayout, Section } from './LegalLayout.jsx'
 
 // VORLAGE nach revDSG (CH) und DSGVO (EU). Vor dem Livegang juristisch prüfen
 // und die markierten Platzhalter ergänzen.
@@ -25,23 +25,18 @@ export default function Datenschutz() {
           <br />
           <a href={`mailto:${company.email}`}>{company.email}</a>
         </address>
-        <p>
-          Vertretung in der EU (Art. 27 DSGVO): <Placeholder>nur nötig bei systematischem Angebot an Personen in der EU</Placeholder>
-        </p>
       </Section>
 
       <Section title="3. Besuch der Website">
         <p>
           Beim Aufruf der Website speichert unser Hosting-Anbieter technisch notwendige Daten in Server-Logfiles: IP-Adresse,
-          Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem. Das dient dem sicheren Betrieb und wird nach{' '}
-          <Placeholder>z. B. 30</Placeholder> Tagen gelöscht.
+          Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem. Das dient dem sicheren Betrieb und wird nach 30 Tagen
+          gelöscht.
         </p>
         <p>
-          Hosting-Anbieter: <Placeholder>Name, Sitz, Land des Hosting-Anbieters</Placeholder>
-        </p>
-        <p>
-          Schriften (Google Fonts, lokal eingebunden), Bilder und Skripte liefern wir vom eigenen Server aus. Es werden keine Inhalte von Servern von Google, YouTube
-          oder ähnlichen Diensten nachgeladen.
+          Schriften (Google Fonts, lokal eingebunden), Bilder und Skripte liefern wir vom eigenen Server aus. Ohne Ihre
+          Einwilligung werden keine Inhalte von Servern von Google, YouTube oder ähnlichen Diensten nachgeladen. Zu Google
+          Analytics siehe Ziffer 5.
         </p>
       </Section>
 
@@ -67,9 +62,17 @@ export default function Datenschutz() {
           (Schlüssel «lw-consent»). Diese Angabe verlässt Ihr Gerät nicht.
         </p>
         <p>
-          <strong>Statistik (nur mit Einwilligung):</strong> Erst wenn Sie zustimmen, setzen wir ein Statistik-Werkzeug ein.{' '}
-          <Placeholder>Name des Tools, Anbieter, Speicherort, Speicherdauer</Placeholder>. Ohne Zustimmung findet keine
-          Auswertung statt.
+          <strong>Statistik mit Google Analytics (nur mit Einwilligung):</strong> Erst wenn Sie zustimmen, setzen wir Google
+          Analytics 4 ein. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Google Analytics
+          wertet aus, welche Seiten wie oft und wie lange besucht werden, mit welchem Gerät und Browser und aus welcher Region.
+          Google speichert dazu Cookies auf Ihrem Gerät (z. B. «_ga», bis zu 2 Jahre). Die vollständige IP-Adresse wird von
+          Google Analytics 4 nicht gespeichert. Die Auswertungsdaten werden nach 14 Monaten gelöscht.
+        </p>
+        <p>
+          Dabei können Daten an Google LLC in den USA übermittelt werden. Google LLC ist unter dem EU-US Data Privacy
+          Framework und dem Swiss-US Data Privacy Framework zertifiziert. Rechtsgrundlage ist Ihre Einwilligung (Art. 6
+          Abs. 1 lit. a DSGVO). Ohne Zustimmung findet keine Auswertung statt. Sie können die Einwilligung jederzeit
+          widerrufen; danach laden wir Google Analytics nicht mehr und löschen die Cookies «_ga».
         </p>
         <p>
           <button type="button" onClick={openConsentSettings} className="underline underline-offset-4 hover:text-rot focus-ring">
@@ -81,11 +84,9 @@ export default function Datenschutz() {
       <Section title="6. Weitergabe und Bekanntgabe ins Ausland">
         <p>
           Wir verkaufen keine Daten. Eine Weitergabe erfolgt nur an Dienstleister, die wir für den Betrieb brauchen (Hosting,
-          E-Mail), oder wenn das Gesetz es verlangt. Liegen diese Dienstleister ausserhalb der Schweiz oder des EWR, stellen
-          wir einen angemessenen Schutz sicher, etwa über die Standardvertragsklauseln der EU-Kommission.
-        </p>
-        <p>
-          E-Mail-Anbieter: <Placeholder>Name, Sitz, Land</Placeholder>
+          E-Mail), mit Ihrer Einwilligung an Google (Statistik, siehe Ziffer 5), oder wenn das Gesetz es verlangt. Liegen
+          diese Dienstleister ausserhalb der Schweiz oder des EWR, stellen wir einen angemessenen Schutz sicher, etwa über
+          die Standardvertragsklauseln der EU-Kommission oder eine Zertifizierung unter dem Data Privacy Framework.
         </p>
       </Section>
 

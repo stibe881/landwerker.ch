@@ -82,10 +82,10 @@ export default function CookieConsent() {
             />
             <div>
               <label htmlFor="consent-statistics" className="font-semibold">
-                Statistik
+                Statistik (Google Analytics)
               </label>
               <p id="consent-statistics-desc" className="text-rosa">
-                Anonyme Zählung der Seitenaufrufe.
+                Auswertung der Seitenaufrufe durch Google. Daten können in die USA übermittelt werden.
               </p>
             </div>
           </div>

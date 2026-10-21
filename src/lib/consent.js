@@ -36,20 +36,47 @@ export function onOpenConsentSettings(handler) {
   return () => window.removeEventListener(OPEN_EVENT, handler)
 }
 
+// Google Analytics 4. Mess-ID über VITE_GA_ID (z. B. G-XXXXXXXXXX) beim Build setzen.
+// Ohne ID wird nichts geladen. Das Skript wird erst nach Opt-in eingefügt (keine Vorab-Anfrage an Google).
+const GA_ID = import.meta.env.VITE_GA_ID
 let statisticsLoaded = false
 
 export function applyConsent(data) {
-  if (data?.statistics && !statisticsLoaded) {
-    statisticsLoaded = true
-    loadStatistics()
+  if (!GA_ID) return
+  if (data?.statistics) {
+    window[`ga-disable-${GA_ID}`] = false
+    if (!statisticsLoaded) {
+      statisticsLoaded = true
+      loadStatistics()
+    }
+  } else {
+    revokeStatistics()
   }
 }
 
-// PLATZHALTER: Hier ein datenschutzfreundliches Statistik-Tool einbinden
-// (z. B. selbst gehostetes Matomo oder Plausible). Wird erst nach Opt-in ausgeführt.
 function loadStatistics() {
-  // const s = document.createElement('script')
-  // s.src = 'https://statistik.landwerker.ch/script.js'
-  // s.defer = true
-  // document.head.appendChild(s)
+  window.dataLayer = window.dataLayer || []
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments)
+  }
+  window.gtag('js', new Date())
+  window.gtag('config', GA_ID)
+  const s = document.createElement('script')
+  s.async = true
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`
+  document.head.appendChild(s)
+}
+
+// Widerruf: weitere Messung sofort stoppen und die Analytics-Cookies löschen
+function revokeStatistics() {
+  window[`ga-disable-${GA_ID}`] = true
+  const host = location.hostname.split('.').slice(-2).join('.')
+  document.cookie.split(';').forEach((c) => {
+    const name = c.split('=')[0].trim()
+    if (name === '_ga' || name.startsWith('_ga_')) {
+      for (const domain of ['', `; domain=.${host}`, `; domain=${location.hostname}`]) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain}`
+      }
+    }
+  })
 }

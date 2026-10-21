@@ -21,6 +21,15 @@ SMTP_HOST=… SMTP_USER=… SMTP_PASS=… MAIL_TO=stefanmoeckli@landwerker.ch np
 
 Ohne `SMTP_HOST` werden Anfragen nur im Terminal ausgegeben und nicht gespeichert.
 
+Google Analytics 4: Mess-ID beim Build setzen, sonst wird nichts geladen.
+
+```bash
+VITE_GA_ID=G-XXXXXXXXXX npm run build
+```
+
+Das Skript wird erst nach Zustimmung im Cookie-Banner geladen. Beim Widerruf werden die `_ga`-Cookies gelöscht.
+In der Google-Analytics-Verwaltung die Datenaufbewahrung auf 14 Monate stellen (so steht es in der Datenschutzerklärung).
+
 `npm run build:preview` erzeugt eine statische Vorschau ohne Server (`dist-preview/`).
 Das Formular validiert dort, versendet aber nichts.
 
@@ -32,9 +41,9 @@ Neue Referenzbilder als WebP nach `public/media/work/` legen und in `projects` e
 ## Recht und Barrierefreiheit
 
 - Cookie-Banner mit Opt-in (`src/components/CookieConsent.jsx`, `src/lib/consent.js`).
-  Statistik wird erst nach Zustimmung geladen. Das Tool selbst ist ein Platzhalter in `loadStatistics()`.
+  Google Analytics wird erst nach Zustimmung geladen (`src/lib/consent.js`).
 - Impressum und Datenschutzerklärung unter `/impressum` und `/datenschutz`.
-  Markierte Platzhalter (Hosting, MWST-Nummer, E-Mail-Anbieter) vor dem Livegang ergänzen
+  Markierter Platzhalter im Impressum (MWST-Nummer) vor dem Livegang ergänzen
   und die Texte juristisch prüfen lassen.
 - Kontaktformular verlangt die Datenschutz-Einwilligung im Frontend und im Server.
 - Schriften (Google Fonts: Big Shoulders, Newsreader) werden über Fontsource selbst gehostet,
