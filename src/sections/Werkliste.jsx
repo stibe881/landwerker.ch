@@ -26,6 +26,15 @@ export default function Werkliste() {
   const list = useRef(null)
   const section = useRef(null)
   const first = useRef(true)
+  // Richtung der Bewegung durch die Liste: nach unten (true) oder nach oben (false)
+  const downward = useRef(true)
+
+  // Zeilen stehen in derselben Reihenfolge wie projects: grösserer Index heisst weiter unten
+  const show = (idx) => {
+    if (idx === active) return
+    downward.current = idx > active
+    setActive(idx)
+  }
 
   // Alle Fotos der Werkliste vorladen, sobald die Sektion in Reichweite kommt: Hover zeigt sie sofort
   useEffect(() => {
@@ -55,14 +64,19 @@ export default function Werkliste() {
   )
   const current = projects[active] ?? projects[0]
 
-  // Bewegung nur als Antwort auf eine Handlung: neues Foto wird von unten über das alte gezogen
+  // Bewegung nur als Antwort auf eine Handlung: neues Foto wird in Leserichtung über das alte gezogen,
+  // beim Abwärtsgehen von oben nach unten, beim Aufwärtsgehen von unten nach oben
   useLayoutEffect(() => {
     if (stack.length < 2) return
     const top = preview.current?.querySelector('[data-top]')
     if (!top) return
     const mm = gsap.matchMedia()
     mm.add('(prefers-reduced-motion: no-preference)', () => {
-      gsap.set(top, { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.08 })
+      gsap.set(top, {
+        clipPath: downward.current ? 'inset(0% 0% 100% 0%)' : 'inset(100% 0% 0% 0%)',
+        scale: 1.08,
+        transformOrigin: downward.current ? 'center top' : 'center bottom',
+      })
       const play = () =>
         gsap.to(top, { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 0.75, ease: 'power3.out', overwrite: true })
       // Erst animieren, wenn das Bild wirklich da ist, sonst läuft die Bewegung ins Leere
@@ -87,6 +101,7 @@ export default function Werkliste() {
   const choose = (id) => {
     setFilter(id)
     const firstMatch = projects.findIndex((p) => id === 'alle' || p.cat === id)
+    downward.current = true
     if (firstMatch >= 0) setActive(firstMatch)
   }
 
@@ -165,8 +180,8 @@ export default function Werkliste() {
                     key={p.idx}
                     data-row
                     tabIndex={0}
-                    onMouseEnter={() => setActive(p.idx)}
-                    onFocus={() => setActive(p.idx)}
+                    onMouseEnter={() => show(p.idx)}
+                    onFocus={() => show(p.idx)}
                     className={`cursor-default border-t border-tinte/15 align-top outline-none transition-colors focus-visible:bg-creme ${
                       active === p.idx ? 'bg-creme' : 'hover:bg-creme'
                     }`}
