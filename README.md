@@ -33,6 +33,17 @@ In der Google-Analytics-Verwaltung die Datenaufbewahrung auf 14 Monate stellen (
 `npm run build:preview` erzeugt eine statische Vorschau ohne Server (`dist-preview/`).
 Das Formular validiert dort, versendet aber nichts.
 
+## GitHub Pages
+
+Der Workflow `.github/workflows/pages.yml` baut die Seite bei jedem Push und veröffentlicht sie unter
+https://stibe881.github.io/landwerker.ch/.
+
+Einmalig einstellen: GitHub → Settings → Pages → Build and deployment → Source: **GitHub Actions**
+(nicht «Deploy from a branch», sonst werden die Rohdateien ohne Build ausgeliefert: weisse Seite).
+
+Lokal: `npm run build:pages` (Pfade für `/landwerker.ch/`, `404.html` für Unterseiten).
+Für eine eigene Domain `VITE_BASE=/` setzen. Pages ist statisch, das Kontaktformular versendet dort nichts.
+
 ## Inhalte pflegen
 
 Alle Texte, Kontaktdaten und Referenzen stehen in `src/content.js`.

@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:preview": "vite build --mode preview --outDir dist-preview",
     "preview": "vite preview",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "build:pages": "vite build --mode pages && cp dist/index.html dist/404.html && touch dist/.nojekyll"
   },
   "dependencies": {
     "@fontsource-variable/big-shoulders-display": "^5.3.0",
