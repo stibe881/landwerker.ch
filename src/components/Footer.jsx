@@ -11,8 +11,8 @@ export default function Footer() {
     <footer className="border-t border-tinte/15 bg-creme text-tinte">
       {/* Zwei Blöcke: links Logo und Adresse, rechts die Navigation rechtsbündig.
           Copyright und Credit stehen jeweils unten im Block, auf derselben Höhe. */}
-      <div className="wrap grid gap-12 py-16 text-base md:grid-cols-[1fr_auto] md:gap-x-16">
-        <div className="flex flex-col">
+      <div className="wrap grid gap-12 py-16 text-base md:grid-cols-12 md:gap-x-8">
+        <div className="flex flex-col md:col-span-5">
           <img
             src={`${import.meta.env.BASE_URL}media/logo-landwerker.png`}
             alt="Landwerker GmbH, Holzbau & Unterhalt"
@@ -42,8 +42,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col">
-          <div className="flex flex-col gap-12 md:flex-row md:justify-end md:gap-20">
+        {/* Rechter Block ab Spalte 7: «Seite» links, «Rechtliches» bündig mit dem rechten Rand und dem Credit */}
+        <div className="flex flex-col md:col-span-6 md:col-start-7">
+          <div className="flex flex-col gap-12 md:flex-row md:justify-between md:gap-8">
             <nav aria-label="Fussnavigation">
               <h2 className="text-grau">Seite</h2>
               <ul className="mt-4 space-y-2">
