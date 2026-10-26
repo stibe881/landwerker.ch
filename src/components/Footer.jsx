@@ -9,15 +9,17 @@ export default function Footer() {
   return (
     // Hell wie die Kopfzeile: das Logo in Markenrot hätte auf Tinte nur 1.9:1
     <footer className="border-t border-tinte/15 bg-creme text-tinte">
-      <div className="wrap grid gap-12 py-16 text-base md:grid-cols-12">
-        <div className="md:col-span-5">
+      {/* Zwei Blöcke: links Logo und Adresse, rechts die Navigation rechtsbündig.
+          Copyright und Credit stehen jeweils unten im Block, auf derselben Höhe. */}
+      <div className="wrap grid gap-12 py-16 text-base md:grid-cols-[1fr_auto] md:gap-x-16">
+        <div className="flex flex-col">
           <img
             src={`${import.meta.env.BASE_URL}media/logo-landwerker.png`}
             alt="Landwerker GmbH, Holzbau & Unterhalt"
             width="798"
             height="242"
             loading="lazy"
-            className="h-16 w-auto"
+            className="h-16 w-max"
           />
           <address className="mt-6 not-italic text-grau">
             {company.name},{' '}
@@ -34,50 +36,56 @@ export default function Footer() {
               {company.email}
             </a>
           </address>
+          <div className="mt-auto hidden pt-12 md:block">
+            {/* Gleiche Höhe wie die Credit-Zeile rechts (Logo-Link 32 px), damit beide auf einer Linie stehen */}
+            <p className="flex h-8 items-center text-sm text-grau">© {new Date().getFullYear()} {company.name}</p>
+          </div>
         </div>
 
-        <nav aria-label="Fussnavigation" className="md:col-span-3 md:col-start-7">
-          <h2 className="text-grau">Seite</h2>
-          <ul className="mt-4 space-y-2">
-            {nav.map((item) => (
-              <li key={item.id}>
-                <Link to={{ pathname: '/', hash: item.id }} className={link}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex flex-col">
+          <div className="flex flex-col gap-12 md:flex-row md:justify-end md:gap-20">
+            <nav aria-label="Fussnavigation">
+              <h2 className="text-grau">Seite</h2>
+              <ul className="mt-4 space-y-2">
+                {nav.map((item) => (
+                  <li key={item.id}>
+                    <Link to={{ pathname: '/', hash: item.id }} className={link}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-        <nav aria-label="Rechtliches" className="md:col-span-3">
-          <h2 className="text-grau">Rechtliches</h2>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <Link to="/impressum" className={link}>
-                Impressum
-              </Link>
-            </li>
-            <li>
-              <Link to="/datenschutz" className={link}>
-                Datenschutzerklärung
-              </Link>
-            </li>
-            <li>
-              <Link to="/barrierefreiheit" className={link}>
-                Barrierefreiheit
-              </Link>
-            </li>
-            <li>
-              <button type="button" onClick={openConsentSettings} className={`text-left ${link}`}>
-                Cookie-Einstellungen
-              </button>
-            </li>
-          </ul>
-        </nav>
+            <nav aria-label="Rechtliches">
+              <h2 className="text-grau">Rechtliches</h2>
+              <ul className="mt-4 space-y-2">
+                <li>
+                  <Link to="/impressum" className={link}>
+                    Impressum
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/datenschutz" className={link}>
+                    Datenschutzerklärung
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/barrierefreiheit" className={link}>
+                    Barrierefreiheit
+                  </Link>
+                </li>
+                <li>
+                  <button type="button" onClick={openConsentSettings} className={`text-left ${link}`}>
+                    Cookie-Einstellungen
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 text-sm text-grau md:col-span-12">
-          <p>© {new Date().getFullYear()} {company.name}</p>
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          {/* Endet rechts bündig mit der Navigation darüber */}
+          <p className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-grau md:mt-auto md:justify-end md:pt-12">
             <span className="whitespace-nowrap">Diese Webseite wurde erstellt von</span>
             <a href="https://gross-ict.ch" target="_blank" rel="noopener noreferrer" className="inline-block py-1 focus-ring">
               <img
@@ -92,6 +100,8 @@ export default function Footer() {
             </a>
           </p>
         </div>
+
+        <p className="text-sm text-grau md:hidden">© {new Date().getFullYear()} {company.name}</p>
       </div>
     </footer>
   )
