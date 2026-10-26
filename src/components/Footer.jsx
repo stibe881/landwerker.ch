@@ -79,14 +79,17 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} {company.name}</p>
           <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <span className="whitespace-nowrap">Diese Webseite wurde erstellt von</span>
-            <img
-              src={`${import.meta.env.BASE_URL}media/logo-gross-ict.webp`}
-              alt="Gross ICT"
-              width="600"
-              height="91"
-              loading="lazy"
-              className="h-6 w-auto"
-            />
+            <a href="https://gross-ict.ch" target="_blank" rel="noopener noreferrer" className="inline-block py-1 focus-ring">
+              <img
+                src={`${import.meta.env.BASE_URL}media/logo-gross-ict.webp`}
+                alt="Gross ICT"
+                width="600"
+                height="91"
+                loading="lazy"
+                className="h-6 w-auto"
+              />
+              <span className="sr-only"> (Website, neues Fenster)</span>
+            </a>
           </p>
         </div>
       </div>
