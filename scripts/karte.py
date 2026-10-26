@@ -9,8 +9,8 @@ n = 2 ** z
 xf = (lon + 180) / 360 * n
 yf = (1 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2 * n
 cx, cy = int(xf), int(yf)
-W, H = 1200, 900  # 2x für scharfe Darstellung
-r = 3
+W, H = 2400, 1200  # 2x für scharfe Darstellung; breit genug für volle Breite, mittig zuschneidbar auf 4:3
+r = 4
 canvas = Image.new('RGB', ((2 * r + 1) * 256, (2 * r + 1) * 256))
 for dx in range(-r, r + 1):
     for dy in range(-r, r + 1):

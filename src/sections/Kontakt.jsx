@@ -142,7 +142,7 @@ export default function Kontakt() {
 
         {/* Standortkarte als lokales Bild (OpenStreetMap, einmalig erzeugt): keine Anfrage an Google beim Laden.
             Ein Klick öffnet Google Maps im neuen Register bzw. in der App. */}
-        <figure className="mt-12 max-w-[30rem]">
+        <figure className="mt-12">
           <a
             href={company.mapsUrl}
             target="_blank"
@@ -152,9 +152,10 @@ export default function Kontakt() {
             <Foto
               src={`${import.meta.env.BASE_URL}media/karte-menznau.webp`}
               alt="Karte von Menznau: Die Werkstatt der Landwerker GmbH liegt am Allmendweg 4, nordöstlich des Bahnhofs."
-              className="aspect-[4/3]"
-              width="1200"
-              height="900"
+              // Volle Breite der Fläche: breit (2:1), wo die Fläche breit ist; sonst mittig auf 4:3 zugeschnitten
+              className="aspect-[4/3] sm:aspect-[2/1] lg:aspect-[4/3]"
+              width="2400"
+              height="1200"
             />
             <span className="sr-only"> In Google Maps öffnen, neues Fenster</span>
           </a>
