@@ -75,9 +75,20 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className="text-sm text-grau md:col-span-12">
-          © {new Date().getFullYear()} {company.name}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 text-sm text-grau md:col-span-12">
+          <p>© {new Date().getFullYear()} {company.name}</p>
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="whitespace-nowrap">Diese Webseite wurde erstellt von</span>
+            <img
+              src={`${import.meta.env.BASE_URL}media/logo-gross-ict.webp`}
+              alt="Gross ICT"
+              width="600"
+              height="91"
+              loading="lazy"
+              className="h-6 w-auto"
+            />
+          </p>
+        </div>
       </div>
     </footer>
   )
