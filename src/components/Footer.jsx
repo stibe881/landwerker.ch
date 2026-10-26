@@ -72,7 +72,6 @@ export default function Footer() {
                 Cookie-Einstellungen
               </button>
             </li>
-            <li className="text-grau">AGB auf Anfrage per E-Mail</li>
           </ul>
         </nav>
 
