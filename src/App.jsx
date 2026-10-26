@@ -6,6 +6,7 @@ import CookieConsent from './components/CookieConsent.jsx'
 import Home from './pages/Home.jsx'
 import Impressum from './pages/Impressum.jsx'
 import Datenschutz from './pages/Datenschutz.jsx'
+import Barrierefreiheit from './pages/Barrierefreiheit.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function ScrollManager() {
@@ -38,17 +39,19 @@ export default function App() {
         Zum Inhalt springen
       </a>
       <ScrollManager />
+      {/* Zuerst im Tab-Ablauf, damit der Hinweis keine fokussierten Elemente verdeckt (WCAG 2.4.11) */}
+      <CookieConsent />
       <Header />
       <main id="main" tabIndex={-1} className="bg-papier outline-none">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/barrierefreiheit" element={<Barrierefreiheit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
-      <CookieConsent />
     </>
   )
 }

@@ -76,6 +76,9 @@ html body {
 /* Überschriften: schmale Grotesk, gesetzt wie Beschriftung auf der Baustelle */
 @utility head {
   @apply font-display font-semibold uppercase leading-[0.92] tracking-[0.01em];
+  /* Lange Wörter wie SCHLÜSSELFERTIGE bei 320 px trennen statt abschneiden (WCAG 1.4.10) */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 /* Fokusring auf roten und dunklen Flächen */

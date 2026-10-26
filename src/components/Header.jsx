@@ -56,7 +56,7 @@ export default function Header() {
           <ul className="flex items-center gap-8 font-display text-lg font-medium uppercase tracking-[0.03em]">
             {nav.map((item) => (
               <li key={item.id}>
-                <Link to={{ pathname: '/', hash: item.id }} className="hover:text-rot focus-ring">
+                <Link to={{ pathname: '/', hash: item.id }} className="inline-flex min-h-11 items-center hover:text-rot focus-ring">
                   {item.label}
                 </Link>
               </li>

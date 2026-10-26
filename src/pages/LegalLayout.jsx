@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 export function LegalLayout({ title, updated, children }) {
   useEffect(() => {
-    document.title = `${title} – Landwerker GmbH`
+    document.title = `${title.replace(/\u00ad/g, '')} – Landwerker GmbH`
     return () => {
       document.title = 'Landwerker GmbH – Holzbau und PV-Anlagen, Menznau'
     }

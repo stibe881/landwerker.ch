@@ -20,7 +20,7 @@ export default function Leistungen() {
     <section id="leistungen" tabIndex={-1} aria-label="Leistungen" className="overflow-hidden outline-none lg:grid lg:grid-cols-12">
       <article aria-labelledby="holzbau-title" className="bg-papier lg:col-span-7">
         <div className="px-5 pb-20 pt-24 sm:px-8 lg:pb-28 lg:pl-12 lg:pr-16 lg:pt-32">
-          <h2 id="holzbau-title" data-slide="0.1" className="head text-[clamp(3.25rem,7vw,7.5rem)]">
+          <h2 id="holzbau-title" data-slide="0.1" className="head text-[clamp(2.5rem,7vw,7.5rem)]">
             {holzbau.title}
           </h2>
           <figure data-plane className="mt-12 lg:-mr-16">
@@ -39,7 +39,7 @@ export default function Leistungen() {
 
       <article aria-labelledby="pv-title" className="bg-rot text-weiss lg:col-span-5">
         <div className="px-5 pb-20 pt-24 sm:px-8 lg:pb-28 lg:pl-12 lg:pr-12 lg:pt-32">
-          <h2 id="pv-title" data-slide="0.05" className="head text-[clamp(3.25rem,5.4vw,6rem)]">
+          <h2 id="pv-title" data-slide="0.05" className="head text-[clamp(2.5rem,5.4vw,6rem)]">
             {pv.title}
           </h2>
           <div className="mt-10 max-w-[34rem] space-y-4">

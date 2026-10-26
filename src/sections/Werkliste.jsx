@@ -126,11 +126,11 @@ export default function Werkliste() {
                   <div data-plane>
                     <Foto src={img(p.image)} alt={p.alt} className={ratio} />
                   </div>
-                  <figcaption className="mt-3 flex justify-between gap-6 text-base">
+                  <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 text-base">
                     <span>
                       {p.work}, {p.material}
                     </span>
-                    <span className="shrink-0 text-grau">{where(p)}</span>
+                    <span className="text-grau">{where(p)}</span>
                   </figcaption>
                 </figure>
               </li>
@@ -182,7 +182,7 @@ export default function Werkliste() {
                     tabIndex={0}
                     onMouseEnter={() => show(p.idx)}
                     onFocus={() => show(p.idx)}
-                    className={`cursor-default border-t border-tinte/15 align-top outline-none transition-colors focus-visible:bg-creme ${
+                    className={`cursor-default border-t border-tinte/15 align-top outline-none transition-colors focus-visible:bg-creme focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-rot ${
                       active === p.idx ? 'bg-creme' : 'hover:bg-creme'
                     }`}
                   >

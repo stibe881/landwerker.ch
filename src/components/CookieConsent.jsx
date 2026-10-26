@@ -28,6 +28,26 @@ export default function CookieConsent() {
     if (open && details) panelRef.current?.focus()
   }, [open, details])
 
+  // WCAG 2.4.11: Solange der Hinweis offen ist, scrollt der Browser fokussierte Elemente über ihn hinaus
+  useEffect(() => {
+    if (!open) return
+    const root = document.documentElement
+    const update = () => {
+      const h = panelRef.current?.getBoundingClientRect().height ?? 0
+      root.style.scrollPaddingBottom = `${Math.ceil(h) + 32}px`
+      // Am Seitenende zusätzlich Platz schaffen, damit auch die Fusszeile über den Hinweis scrollen kann
+      document.body.style.paddingBottom = `${Math.ceil(h) + 32}px`
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    if (panelRef.current) ro.observe(panelRef.current)
+    return () => {
+      ro.disconnect()
+      root.style.scrollPaddingBottom = ''
+      document.body.style.paddingBottom = ''
+    }
+  }, [open, details])
+
   if (!open) return null
 
   const decide = (value) => {
@@ -61,7 +81,7 @@ export default function CookieConsent() {
         <fieldset className="mt-5 space-y-4 border-t border-weiss/30 pt-5 text-base">
           <legend className="sr-only">Kategorien</legend>
           <div className="flex items-start gap-3">
-            <input id="consent-necessary" type="checkbox" checked disabled className="mt-1 h-5 w-5 accent-weiss" aria-describedby="consent-necessary-desc" />
+            <input id="consent-necessary" type="checkbox" checked disabled className="mt-1 h-6 w-6 accent-weiss" aria-describedby="consent-necessary-desc" />
             <div>
               <label htmlFor="consent-necessary" className="font-semibold">
                 Notwendig (immer aktiv)
@@ -77,7 +97,7 @@ export default function CookieConsent() {
               type="checkbox"
               checked={statistics}
               onChange={(e) => setStatistics(e.target.checked)}
-              className="mt-1 h-5 w-5 accent-weiss focus-ring-dark"
+              className="mt-1 h-6 w-6 accent-weiss focus-ring-dark"
               aria-describedby="consent-statistics-desc"
             />
             <div>

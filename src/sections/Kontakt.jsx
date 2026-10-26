@@ -119,7 +119,7 @@ export default function Kontakt() {
           <div>
             <dt className="text-base text-rosa">E-Mail</dt>
             <dd>
-              <a href={`mailto:${company.email}`} className="break-all underline underline-offset-4 focus-ring-dark">
+              <a href={`mailto:${company.email}`} className="inline-block break-all py-1 underline underline-offset-4 focus-ring-dark">
                 {company.email}
               </a>
             </dd>
@@ -131,7 +131,7 @@ export default function Kontakt() {
                 href={company.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-4 focus-ring-dark"
+                className="inline-block py-1 underline underline-offset-4 focus-ring-dark"
               >
                 {company.street}, {company.zip} {company.city}
                 <span className="sr-only"> (in Google Maps öffnen, neues Fenster)</span>
@@ -142,7 +142,7 @@ export default function Kontakt() {
 
         {/* Standortkarte als lokales Bild (OpenStreetMap, einmalig erzeugt): keine Anfrage an Google beim Laden.
             Ein Klick öffnet Google Maps im neuen Register bzw. in der App. */}
-        <figure className="mt-12">
+        <figure className="relative mt-12">
           <a
             href={company.mapsUrl}
             target="_blank"
@@ -159,21 +159,10 @@ export default function Kontakt() {
             />
             <span className="sr-only"> In Google Maps öffnen, neues Fenster</span>
           </a>
-          <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 text-sm text-rosa">
-            <a href={company.mapsUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-weiss focus-ring-dark">
-              In Google Maps öffnen
-            </a>
-            <span>
-              Karte ©{' '}
-              <a
-                href="https://www.openstreetmap.org/copyright"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-weiss focus-ring-dark"
-              >
-                OpenStreetMap-Mitwirkende
-              </a>
-            </span>
+          {/* Quellenangabe ist nach der OpenStreetMap-Lizenz (ODbL) Pflicht: klein in der Kartenecke wie bei Online-Karten.
+              Bewusst kein Link, damit sich keine zwei Klickflächen überlagern (WCAG 2.5.8). */}
+          <figcaption className="pointer-events-none absolute bottom-0 right-0 bg-papier/90 px-2 py-0.5 text-xs text-tinte">
+            © OpenStreetMap-Mitwirkende
           </figcaption>
         </figure>
       </div>
@@ -186,6 +175,8 @@ export default function Kontakt() {
           </div>
         ) : (
           <form ref={formRef} onSubmit={onSubmit} noValidate aria-describedby={statusId} className="space-y-10">
+            {/* WCAG 3.3.2: Pflichtfelder vorab erklären */}
+            <p className="text-base text-grau">Alle Felder ohne «optional» sind Pflichtfelder.</p>
             <div className="grid gap-10 sm:grid-cols-2">
               <Field id="name" label="Name" required error={errors.name}>
                 <input id="name" name="name" type="text" autoComplete="name" required value={values.name} onChange={set('name')} className={`${input} ${line('name')}`} {...aria('name')} />
@@ -232,7 +223,7 @@ export default function Kontakt() {
                   required
                   checked={values.consent}
                   onChange={set('consent')}
-                  className="mt-1.5 h-5 w-5 shrink-0 cursor-pointer accent-rot focus-ring"
+                  className="mt-1 h-6 w-6 shrink-0 cursor-pointer accent-rot focus-ring"
                   {...aria('consent')}
                 />
                 <label htmlFor="consent" className="cursor-pointer text-base">
@@ -245,7 +236,7 @@ export default function Kontakt() {
                 </label>
               </div>
               {errors.consent && (
-                <p id="consent-error" className="mt-2 pl-9 text-base text-rot">
+                <p id="consent-error" className="mt-2 pl-10 text-base text-rot">
                   {errors.consent}
                 </p>
               )}

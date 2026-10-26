@@ -53,9 +53,11 @@ Radien: 0. Schatten: keine.
 
 - revDSG/DSGVO: Cookie-Banner mit Opt-in, Ablehnen gleichwertig zum Zustimmen. Statistik erst nach Einwilligung.
 - Kontaktformular: Pflicht-Checkbox Datenschutz, im Frontend und im Server geprüft.
-- Impressum mit UID CHE-343.855.359 und HR-Nr. CH-100.4.806.817-8. Datenschutzerklärung unter `/datenschutz`.
-- WCAG 2.1 AA: Landmarks, Skip-Link, sichtbarer Fokus (`focus-visible:ring-2`), Alt-Text bei jedem Bild,
-  bewegte Medien pausierbar, Formularfehler mit `aria-describedby`.
+- Impressum mit UID CHE-343.855.359 und HR-Nr. CH-100.4.806.817-8. Datenschutzerklärung unter `/datenschutz`,
+  Barrierefreiheitserklärung unter `/barrierefreiheit` (bei grösseren Änderungen neu prüfen und Datum anpassen).
+- WCAG 2.2 AA: Landmarks, Skip-Link, sichtbarer Fokus (`focus-visible:ring-2`), Alt-Text bei jedem Bild,
+  bewegte Medien pausierbar, Formularfehler mit `aria-describedby`, Klickflächen ≥ 24 × 24 px,
+  kein seitliches Scrollen bei 320 px, Fokus nie von Kopfzeile oder Cookie-Hinweis verdeckt.
 
 ## Arbeitsweise
 

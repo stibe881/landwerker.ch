@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { company, nav } from '../content.js'
 import { openConsentSettings } from '../lib/consent.js'
 
-const link = 'hover:text-rot underline-offset-4 hover:underline focus-ring'
+// inline-block mit Polsterung: Klickfläche mindestens 24 px hoch (WCAG 2.5.8)
+const link = 'inline-block py-1 hover:text-rot underline-offset-4 hover:underline focus-ring'
 
 export default function Footer() {
   return (
@@ -59,6 +60,11 @@ export default function Footer() {
             <li>
               <Link to="/datenschutz" className={link}>
                 Datenschutzerklärung
+              </Link>
+            </li>
+            <li>
+              <Link to="/barrierefreiheit" className={link}>
+                Barrierefreiheit
               </Link>
             </li>
             <li>
