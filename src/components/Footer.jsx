@@ -76,7 +76,7 @@ export default function Footer() {
         </nav>
 
         <p className="text-sm text-grau md:col-span-12">
-          © {new Date().getFullYear()} {company.name}. UID {company.uid}. Die Fotos in Leistungen, Über uns und Werkliste zeigen eigene Arbeiten.
+          © {new Date().getFullYear()} {company.name}
         </p>
       </div>
     </footer>
