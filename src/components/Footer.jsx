@@ -19,7 +19,11 @@ export default function Footer() {
             className="h-16 w-auto"
           />
           <address className="mt-6 not-italic text-grau">
-            {company.name}, {company.street}, {company.zip} {company.city}
+            {company.name},{' '}
+            <a href={company.mapsUrl} target="_blank" rel="noopener noreferrer" className={link}>
+              {company.street}, {company.zip} {company.city}
+              <span className="sr-only"> (in Google Maps öffnen, neues Fenster)</span>
+            </a>
             <br />
             <a href={`tel:${company.phoneOfficeHref}`} className={link}>
               {company.phoneOffice}

@@ -14,6 +14,8 @@ export const company = {
   email: 'stefanmoeckli@landwerker.ch',
   uid: 'CHE-343.855.359',
   hr: 'CH-100.4.806.817-8',
+  // Universeller Google-Maps-Link: öffnet auf dem Smartphone die Maps-App (falls installiert), sonst den Browser
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Landwerker GmbH, Allmendweg 4, 6122 Menznau, Schweiz')}`,
 }
 
 export const nav = [

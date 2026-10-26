@@ -126,7 +126,15 @@ export default function Kontakt() {
           <div>
             <dt className="text-base text-rosa">Werkstatt</dt>
             <dd>
-              {company.street}, {company.zip} {company.city}
+              <a
+                href={company.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 focus-ring-dark"
+              >
+                {company.street}, {company.zip} {company.city}
+                <span className="sr-only"> (in Google Maps öffnen, neues Fenster)</span>
+              </a>
             </dd>
           </div>
         </dl>
