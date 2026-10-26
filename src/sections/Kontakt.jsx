@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { company } from '../content.js'
+import Foto from '../components/Foto.jsx'
 
 const STATIC_PREVIEW = import.meta.env.VITE_STATIC_PREVIEW === 'true'
 
@@ -138,6 +139,42 @@ export default function Kontakt() {
             </dd>
           </div>
         </dl>
+
+        {/* Standortkarte als lokales Bild (OpenStreetMap, einmalig erzeugt): keine Anfrage an Google beim Laden.
+            Ein Klick öffnet Google Maps im neuen Register bzw. in der App. */}
+        <figure className="mt-12 max-w-[30rem]">
+          <a
+            href={company.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block focus-ring-dark"
+          >
+            <Foto
+              src={`${import.meta.env.BASE_URL}media/karte-menznau.webp`}
+              alt="Karte von Menznau: Die Werkstatt der Landwerker GmbH liegt am Allmendweg 4, nordöstlich des Bahnhofs."
+              className="aspect-[4/3]"
+              width="1200"
+              height="900"
+            />
+            <span className="sr-only"> In Google Maps öffnen, neues Fenster</span>
+          </a>
+          <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 text-sm text-rosa">
+            <a href={company.mapsUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-weiss focus-ring-dark">
+              In Google Maps öffnen
+            </a>
+            <span>
+              Karte ©{' '}
+              <a
+                href="https://www.openstreetmap.org/copyright"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-weiss focus-ring-dark"
+              >
+                OpenStreetMap-Mitwirkende
+              </a>
+            </span>
+          </figcaption>
+        </figure>
       </div>
 
       <div className="px-5 pb-24 pt-16 sm:px-8 lg:col-span-6 lg:col-start-7 lg:pb-28 lg:pr-12 lg:pt-32">
